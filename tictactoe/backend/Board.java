@@ -1,4 +1,4 @@
-package tsk;
+package tictactoe.backend;
 
 public class Board{
 	private char[][] cells;
@@ -22,7 +22,7 @@ public class Board{
 	public void play(int i, int j){
 		char form = player1 ? 'X' : 'O';
 		this.cells[i][j] = form;
-		
+
 		this.player1 = !this.player1;
 	}
 }

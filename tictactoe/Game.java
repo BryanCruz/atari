@@ -1,9 +1,11 @@
+package tictactoe;
+
 import java.util.Scanner;
 import tsk.Board;
 public class Game{
 	public static void main(String[] args){
 		Board board = new Board();
-		
+
 		Scanner scanner = new Scanner(System.in);
 
 		int countCells = 0;
@@ -45,12 +47,12 @@ public class Game{
 			if(charColumn == '-') charColumn = ' ';
 			if(charLine   == '-') charLine   = ' ';
 
-			if(cells[i][i]   == charDiagonal1)   checkDiagonal1++; 
-			if(cells[i][2-i] == charDiagonal2)   checkDiagonal2++; 
+			if(cells[i][i]   == charDiagonal1)   checkDiagonal1++;
+			if(cells[i][2-i] == charDiagonal2)   checkDiagonal2++;
 
 			for(int j = 0; j < 3; j++){
-				if(cells[i][j] == charLine)   checkLine++; 
-				if(cells[j][i] == charColumn) checkColumn++; 
+				if(cells[i][j] == charLine)   checkLine++;
+				if(cells[j][i] == charColumn) checkColumn++;
 			}
 		}
 		if(checkLine == 3 || checkColumn == 3 || checkDiagonal1 == 3 || checkDiagonal2 == 3){
