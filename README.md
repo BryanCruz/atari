@@ -1,5 +1,5 @@
-#Projeto de Orientação a Objetos
+# Projeto de Orientação a Objetos
 
-##Tic Tac Toe
+## Tic Tac Toe
 
 Jogo da velha tradicional
