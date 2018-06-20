@@ -4,7 +4,7 @@ import java.util.Scanner;
 import tictactoe.backend.Board;
 
 public class Game {
-	public static void main(String[] args) {
+	public static void startGame() {
 		Board board = new Board();
 
 		Scanner scanner = new Scanner(System.in);
