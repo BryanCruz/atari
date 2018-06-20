@@ -1,7 +1,7 @@
-package game;
+package tictactoe;
 
 import java.util.Scanner;
-import backend.Board;
+import tictactoe.backend.Board;
 
 public class Game {
 	public static void main(String[] args) {
