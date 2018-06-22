@@ -65,7 +65,13 @@ public class Board {
 		//troca jogador
 		setPlayer1(!getPlayer1());
 	}
-
+	public void printBoard() {
+		for (int i = 0;i < 3;i++) {
+			for (int j = 0;j < 3;j++) {
+				System.out.printf("%c%c", getCells()[i][j], (j == 2 ? '\n' : '|'));
+			}
+		}
+	}
 	public int checkCell(int i, int j){
 		this.checkLine[i] += player1 ? 1 : -1;
 		this.checkColumn[j] += player1 ? 1 : -1;
