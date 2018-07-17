@@ -1,18 +1,9 @@
 package atari;
 
-import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-//import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.paint.Color;
@@ -41,8 +32,7 @@ public class ExitBox {
         noButton.setOnMouseClicked( event -> {
            answer = false;
            window.close();
-        });
-        
+        });        
         
         VBox layout = new VBox(15);
         layout.getChildren().addAll(label, yesButton, noButton);
