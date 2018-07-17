@@ -39,13 +39,18 @@ public class Atari extends Application {
       selector.setVisible(true);
     });
     exit.setOnMouseClicked((event) -> {
-      stage.close();
+      closeProgram();
     });
     //adiciona todos os elementos da cena
     root.getChildren().addAll(mainMenu, selector);
     //abre janela da aplicacao
     stage.setTitle("Atari");
     stage.setScene(mainScene);
+    //Garante que o programa não e encerrado quando clicamos no x
+    stage.setOnCloseRequest(e -> {
+            e.consume();
+            closeProgram();
+        });
     stage.show();
   }
 
@@ -60,4 +65,9 @@ public class Atari extends Application {
     return mainScene;
   }
   
+  private void closeProgram() {
+      boolean answer = ExitBox.display("Exit","Do you really want to exit?");
+      if (answer)
+          stage.close();
+  }
 }
