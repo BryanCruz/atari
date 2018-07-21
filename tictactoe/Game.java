@@ -34,27 +34,30 @@ public class Game {
 			Player actualPlayer = player1Turn ? player1 : player2;
 			int[] playedCells = actualPlayer.chooseCell(board);
 			int x = playedCells[0], y = playedCells[1];
-		
+
 			// the engine fills that cell
 			Engine.play(board, actualPlayer, x, y);
 			Interface.printBoard(board);
+			player1Turn = !player1Turn;
 		}
 
-		if (Engine.checkWin(board) == 0) {
+		switch (Engine.checkWin(board)) {
+			case 0:
 			Interface.tieScreen();
-		} else if (Engine.checkWin(board) == 1){
+			break;
+
+			case 1:
+			Interface.winnerScreen(difficulty == 0 ? player1.getName() : "YOU");
+			break;
+
+			case 2:
 			if (difficulty == 0) {
-				Interface.winnerScreen(player1.getName());
-			}else {
-				Interface.winnerScreen("YOU");
+				Interface.winnerScreen(((Human)player2).getName());
 			}
-		}else {
-			if (difficulty == 0) {
-				Human player2Aux = (Human) player2;
-				Interface.winnerScreen(player2Aux.getName());
-			}else {
+			else {
 				Interface.loserScreen();
 			}
+			break;
 		}
 	}
 }
