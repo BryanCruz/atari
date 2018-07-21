@@ -52,4 +52,9 @@ public class IA implements Player {
 	public int getDifficulty() {
 		return this.difficulty;
 	}
+
+	@Override
+	public String getType(){
+		return "IA";
+	}
 }

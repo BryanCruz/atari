@@ -51,4 +51,9 @@ public class Human implements Player {
 
 		return (new int[] {x, y});
 	}
+
+	@Override
+	public String getType(){
+		return "Human";
+	}
 }
