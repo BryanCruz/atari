@@ -2,6 +2,7 @@ package tictactoe.frontend;
 
 import tictactoe.elements.Board;
 import tictactoe.elements.Player;
+import tictactoe.elements.Human;
 
 public abstract class Interface {
 
@@ -12,6 +13,12 @@ public abstract class Interface {
 				System.out.printf(" %c %c", board.getCell(i, j), (j == 2 ? '\n' : '|'));
 			}
 		}
+	}
+
+	//informa qual é o jogador atual
+	public static void playScreen(Player player){
+		System.out.println("Player " + player.getNumber() + " turn");
+		if(player instanceof Human) System.out.print("Choose a cell: ");
 	}
 
 	//imprime a primeira tela do programa

@@ -32,6 +32,7 @@ public class Game {
 		int actualPlayer = 0;
 		while(!Engine.checkGameOver(board)) {
 			// the actual player chooses a cell to play
+			Interface.playScreen(players[actualPlayer]);
 			int[] playedCells = players[actualPlayer].chooseCell(board);
 			int x = playedCells[0], y = playedCells[1];
 
