@@ -15,13 +15,16 @@ public class Game {
 		Interface.nameScreen(1);		
 		Player player1 = new Human(scanner.nextLine(), 1);
 		
-		if (difficulty > 0) {
+		if (difficulty < 0) {
+			//If it's multiplayer, instatiates a new Human
 			Interface.nameScreen(2);			
-			Player player2 = new Human(scanner.nextLine(), 2); 
+			Player player2 = new Human(scanner.nextLine(), 2); 		
 		} else {			
+			//If it's singleplayer, instatiates an IA
 			Player player2 = new IA(difficulty, 2);
 		}
 
+		//While game's not over
 		while(!Engine.gameOver(board)) {
 			int i = scanner.nextInt();
 			int j = scanner.nextInt();
@@ -31,12 +34,21 @@ public class Game {
 				Interface.printBoard(board);
 			}
 		}
-
-		if (Engine.checkWin(board) != 0) {
-			System.out.printf("Player %d win!!\n", Engine.checkWin(board));
-		}
-		else {
-			System.out.println("Tie!!");
+		
+		
+		if (Engine.checkWin(board) == 0) {
+			Interface.tieScreen();
+		} else if (Engine.checkWin(board) == 1){
+			if (multiplayer) {
+				Interface.winnerScreen(player1.getName());
+			}else {
+				Inteface.winnerScreen("YOU");
+		}else {
+			if (multiplayer) {
+				Interface.winnerScreen(player2.getName());
+			}else {
+				Interface.loserScreen();
+			}
 		}
 	}
 }
