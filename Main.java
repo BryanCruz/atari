@@ -7,8 +7,8 @@ class Main {
 		
 		boardSize = 3;
 		
-		Interface.firstScreen;		
-		sc.nextInt() = 1 ? multiplayer = false : multiplayer = true;
+		Interface.firstScreen();		
+		sc.nextInt() == 1 ? multiplayer = false : multiplayer = true;
 		
 		if (!multiplayer) {
 			Interface.difficultyScreen();
