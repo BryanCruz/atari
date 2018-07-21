@@ -19,7 +19,7 @@ public class IA implements Player {
 
 	@Override
 	public int[] chooseCell(Board board) {
-		int[] choice = makeChoice(board);
+		return makeChoice(board);
 	}
 
 	public int[] makeChoice(Board board) {
