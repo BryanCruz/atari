@@ -8,7 +8,7 @@ public class Human implements Player {
 
 	public Human(Sting name, int number) {
 		this.setName(name);
-		this.number = number;
+		this.setNumber(number);
 	}
 
 	public String getName() {
