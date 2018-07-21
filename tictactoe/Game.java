@@ -12,9 +12,11 @@ public class Game {
 		Engine.clearBoard(board);
 		Scanner scanner = new Scanner(System.in);
 
+		// create player 1
 		Interface.nameScreen(1);
 		Player player1 = new Human(scanner.nextLine(), 1);
 
+		// create player 2
 		if (difficulty == 0) {
 			//If it's multiplayer, instatiates a new Human
 			Interface.nameScreen(2);
