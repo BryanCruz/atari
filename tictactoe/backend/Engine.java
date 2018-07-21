@@ -1,6 +1,6 @@
 package tictactoe.backend;
 
-public abstract class Logic {
+public abstract class Engine {
 
   private static int countCells = 0;
 
