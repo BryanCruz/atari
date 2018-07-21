@@ -1,5 +1,5 @@
 import java.util.Scanner;
-import tictactoe.*;
+import tictactoe.frontend.Interface;
 
 class Main {
 	public static void main(String[] args) {
