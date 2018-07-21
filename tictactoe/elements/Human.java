@@ -8,7 +8,7 @@ public class Human implements Player {
 
 	public Human(Sting name, int number) {
 		this.setName(name);
-		this.number = number;
+		this.setNumber(number);
 	}
 
 	public String getName() {
@@ -25,8 +25,8 @@ public class Human implements Player {
 	}
 
 	@Override
-	public void setNumber() {
-		this.nome = nome;
+	public void setNumber(int number) {
+		this.number = number;
 	}
 
 	public int[] chooseCell() {
