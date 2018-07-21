@@ -1,6 +1,7 @@
 package tictactoe.frontend;
 
-import tictactoe.backend.Board;
+import tictactoe.elements.Board;
+import tictactoe.elements.Player;
 
 public abstract class Interface {
 
@@ -31,7 +32,7 @@ public abstract class Interface {
 
 	//imprime a tela de vencedor
 	public static void winnerScreen(String player){
-		System.out.println(player " WON!!!");
+		System.out.println(player + " WON!!!");
 	}
 
 	//imprime a tela de empate
@@ -44,7 +45,6 @@ public abstract class Interface {
 		System.out.println("You LOSE");
 	}
 
-
 	public static void endScreen(){
 		System.out.println("Game Over!");
 		System.out.println();		
@@ -54,8 +54,8 @@ public abstract class Interface {
 	}
 	
 	//imprime a interface para insercão dos nomes
-	public static void nameScreen(int playerNumber) { 		
-		System.out.println("Insert player "+ playerNumber +"'s name");
+	public static void nameScreen(Player player) { 		
+		System.out.println("Insert player "+ player.getNumber() +"'s name");
 	}
 
 }

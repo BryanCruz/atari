@@ -1,7 +1,7 @@
 package tictactoe;
 
 import java.util.Scanner;
-import tictactoe.backend.Board;
+import tictactoe.elements.*;
 import tictactoe.backend.Engine;
 import tictactoe.frontend.Interface;
 
