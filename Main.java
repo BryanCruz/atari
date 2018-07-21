@@ -4,7 +4,7 @@ import tictactoe.frontend.Interface;
 class Main {
 	public static void main(String[] args) {
 		boolean multiplayer;
-		int boardSize, difficultyIA;
+		int boardSize, difficultyIA = 0;
 		Scanner sc = new Scanner(System.in);
 
 		boardSize = 3;
