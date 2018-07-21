@@ -1,9 +1,10 @@
 import java.util.Scanner;
+import tictactoe.*;
 
 class Main {
 	public static void main(String[] args) {
-		private boolean multiplayer;
-		private int boardSize, difficultyIA;
+		boolean multiplayer;
+		int boardSize, difficultyIA;
 		
 		boardSize = 3;
 		
