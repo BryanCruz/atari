@@ -39,8 +39,14 @@ public abstract class Interface {
 
 		} else {  //Ganhou
 			if (player1.isHuman() && player2.isHuman())
-			System.out.println(players[winner].getName() + "GANHOU!");
-		}		
+			System.out.println(players[winner].getName() + "WON!");
+		}
+
+		System.out.println();
+		System.out.println("1 - Restart game(Don't change players");
+		System.out.println("2 - Restart game(Change players");
+		System.out.println("2 - Exit Game");
 	}
 	
+
 }
