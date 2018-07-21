@@ -2,6 +2,6 @@ package tictactoe.elements;
 
 public interface Player {
 	int[] chooseCell();
-  void setNumber();
+  void setNumber(int number);
   int getNumber();
 }
