@@ -10,7 +10,7 @@ public class Human implements Player {
 	/*	Overload constructor
 		Parameters : name and number of the player		
 	*/
-	public Human(Sting name, int number) {
+	public Human(String name, int number) {
 		this.setName(name);
 		this.setNumber(number);
 	}
