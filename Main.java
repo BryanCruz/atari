@@ -6,17 +6,17 @@ class Main {
 		boolean multiplayer;
 		int boardSize, difficultyIA;
 		Scanner sc = new Scanner(System.in);
-		
+
 		boardSize = 3;
-		
-		Interface.firstScreen();		
-		sc.nextInt() == 1 ? multiplayer = false : multiplayer = true;
-		
+
+		Interface.firstScreen();
+		multiplayer = sc.nextInt() == 1 ? false : true;
+
 		if (!multiplayer) {
 			Interface.difficultyScreen();
 			difficultyIA = sc.nextInt();
-		}	
-		
+		}
+
 		tictactoe.Game.startGame(boardSize, multiplayer, difficultyIA);
 	}
 }
