@@ -11,53 +11,47 @@ public class Game {
 		Board board = new Board(boardSize);
 		Engine.clearBoard(board);
 		Scanner scanner = new Scanner(System.in);
+		Player[] players = new Player[2];
 
 		// create player 1
 		Interface.nameScreen(1);
-		Player player1 = new Human(scanner.nextLine(), 1);
+
+		players[0] = new Human(scanner.nextLine(), 1);
 
 		// create player 2
-		Player player2;
 		if (difficulty == 0) {
 			//If it's multiplayer, instatiates a new Human
 			Interface.nameScreen(2);
-			player2 = new Human(scanner.nextLine(), 2);
+			players[1] = new Human(scanner.nextLine(), 2);
 		} else {
 			//If it's singleplayer, instatiates an IA
-			player2 = new IA(difficulty, 2);
+			players[1] = new IA(difficulty, 2);
 		}
 
 		// while game's not over
-		boolean player1Turn = true;
+		int actualPlayer = 0;
 		while(!Engine.checkGameOver(board)) {
 			// the actual player chooses a cell to play
-			Player actualPlayer = player1Turn ? player1 : player2;
-			int[] playedCells = actualPlayer.chooseCell(board);
+			int[] playedCells = players[actualPlayer].chooseCell(board);
 			int x = playedCells[0], y = playedCells[1];
 
 			// the engine fills that cell
-			Engine.play(board, actualPlayer, x, y);
+			Engine.play(board, players[actualPlayer], x, y);
 			Interface.printBoard(board);
-			player1Turn = !player1Turn;
+			actualPlayer ^= 1;
 		}
 
-		switch (Engine.checkWin(board)) {
-			case 0:
+		int winner = Engine.checkWin(board);
+		if (winner == 0) {
 			Interface.tieScreen();
-			break;
-
-			case 1:
-			Interface.winnerScreen(difficulty == 0 ? player1.getName() : "YOU");
-			break;
-
-			case 2:
-			if (difficulty == 0) {
-				Interface.winnerScreen(((Human)player2).getName());
+		}
+		else {
+			if (players[winner - 1] instanceof Human) {
+				Interface.winnerScreen(((Human)players[winner - 1]).getName());
 			}
 			else {
 				Interface.loserScreen();
 			}
-			break;
 		}
 	}
 }
