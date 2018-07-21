@@ -14,7 +14,7 @@ class Main {
 		// checks if it is a multiplayer game
 		boolean multiplayer = sc.nextInt() == 1 ? false : true;
 		if(multiplayer){
-			difficulty = -1;
+			difficulty = 0;
 		}else{
 			// if it isn't, the player chooses a difficulty to play
 			Interface.difficultyScreen();
