@@ -27,7 +27,7 @@ public class Game {
 		}
 
 		//While game's not over
-		while(!Engine.gameOver(board)) {
+		while(!Engine.checkGameOver(board)) {
 			int i = scanner.nextInt();
 			int j = scanner.nextInt();
 
