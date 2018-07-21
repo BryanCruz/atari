@@ -13,12 +13,13 @@ public abstract class Interface {
 				System.out.printf(" %c %c", board.getCell(i, j), (j == 2 ? '\n' : '|'));
 			}
 		}
+		System.out.println();
 	}
 
 	//informa qual é o jogador atual
 	public static void playScreen(Player player){
-		System.out.println("Player " + player.getNumber() + " turn");
-		if(player instanceof Human) System.out.print("Choose a cell: ");
+		System.out.print("Player " + player.getNumber() + " turn");
+		if(player instanceof Human) System.out.print(", choose a cell: ");
 	}
 
 	//imprime a primeira tela do programa

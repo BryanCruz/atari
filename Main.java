@@ -12,7 +12,7 @@ class Main {
 		Interface.firstScreen();
 
 		// checks if it is a multiplayer game
-		boolean multiplayer = sc.nextInt() != 1;
+		boolean multiplayer = sc.nextInt() == 1;
 		if (multiplayer) {
 			difficulty = 0;
 		}
