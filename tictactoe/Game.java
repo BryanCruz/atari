@@ -13,18 +13,14 @@ public class Game {
 		Scanner scanner = new Scanner(System.in);
 		
 		Interface.nameScreen(1);		
-		Player player1 = new Human(scanner.nextLine());
+		Player player1 = new Human(scanner.nextLine(), 1);
 		
 		if (multiplayer) {
 			Interface.nameScreen(2);			
-			Player player2 = new Human(scanner.nextLine()); 
+			Player player2 = new Human(scanner.nextLine(), 2); 
 		} else {			
-			Player player2 = new IA(difficultyIA);
-		}
-		
-		
-
-		
+			Player player2 = new IA(difficultyIA, 2);
+		}		
 
 		while(!Engine.gameOver(board)) {
 			int i = scanner.nextInt();
