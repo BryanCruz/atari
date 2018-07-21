@@ -4,10 +4,12 @@ import tictactoe.elements.*;
 
 public abstract class Engine {
 
+  // set the values of each type of cell
   private static final char emptySymbol   = '-';
   private static final char player1Symbol = 'X';
   private static final char player2Symbol = 'O';
 
+  // clear the board for a new game
   private static void clearBoard(Board board) {
     int size = board.getBoardSize();
     for(int i = 0; i < size; i++){
@@ -17,21 +19,24 @@ public abstract class Engine {
     }
   }
 
+  // make a play, i.e, defines a value for a cell in the board
   public static void play(Board board, Player player, int i, int j) {
     char form = player.getNumber() == 1 ? player1Symbol : player2Symbol;
     board.setCell(i, j, form);
   }
 
+  // checks if the cell has already been played
   public static boolean checkEmptyCell(Board board, int i, int j){
     return board.getCell(i, j) == emptySymbol;
   }
 
-  // retorna 1 se o player1 ganhar
-  // retorna 2 se o player2 ganhar
+  // returns 1 if player1 wins
+  // returns 2 if player2 wins
+  // returns 0 otherwise
   public static int checkWin(Board board) {
     int boardSize = board.getBoardSize();
 
-    // cria uma matriz de células para facilitar a verificação
+    // creates a matrix of int to make it easier to check
     int[][] cells = new int[boardSize][boardSize];
     for(int i = 0; i < boardSize; i++){
       for(int j = 0; j < boardSize; j++){
@@ -46,7 +51,7 @@ public abstract class Engine {
       }
     }
 
-    // checagem horizontal e vertical
+    // horizontal and vertical checking
     for(int i = 0; i < boardSize; i++){
       int countHorizontal = 0;
       int countVertical   = 0;
@@ -63,7 +68,7 @@ public abstract class Engine {
       }
     }
 
-    // checagem diagonal
+    // diagonal checking
     int countDiagonal1 = 0;
     int countDiagonal2 = 0;
     for(int i = 0; i < boardSize; i++){
@@ -77,15 +82,12 @@ public abstract class Engine {
       return 2;
     }
 
-    // se chegou até aqui, ninguém ganhou
+    // if it reaches here, no one won
     return 0;
   }
 
-  public static boolean gameOver(Board board) {
+  // checks if the game is over
+  public static boolean checkGameOver(Board board) {
     return (checkWin(board) != 0 || countCells == size * size);
-  }
-
-  public static void setCountCells() {
-    Engine.countCells++;
   }
 }
