@@ -15,7 +15,7 @@ public class Game {
 		Interface.nameScreen(1);
 		Player player1 = new Human(scanner.nextLine(), 1);
 
-		if (difficulty < 0) {
+		if (difficulty == 0) {
 			//If it's multiplayer, instatiates a new Human
 			Interface.nameScreen(2);
 			Player player2 = new Human(scanner.nextLine(), 2);
