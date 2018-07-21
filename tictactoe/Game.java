@@ -54,5 +54,7 @@ public class Game {
 				Interface.loserScreen();
 			}
 		}
+
+		Interface.endScreen();
 	}
 }

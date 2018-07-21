@@ -20,6 +20,7 @@ public abstract class Interface {
 	public static void playScreen(Player player){
 		System.out.print("Player " + player.getNumber() + " turn");
 		if(player instanceof Human) System.out.print(", choose a cell: ");
+		else 						System.out.println();
 	}
 
 	//imprime a primeira tela do programa
