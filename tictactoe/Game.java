@@ -15,15 +15,15 @@ public class Game {
 		// create player 1
 		Interface.nameScreen(1);
 		Player player1 = new Human(scanner.nextLine(), 1);
-
 		// create player 2
+		Player player2;
 		if (difficulty == 0) {
 			//If it's multiplayer, instatiates a new Human
 			Interface.nameScreen(2);
-			Player player2 = new Human(scanner.nextLine(), 2);
+			player2 = new Human(scanner.nextLine(), 2);
 		} else {
 			//If it's singleplayer, instatiates an IA
-			Player player2 = new IA(difficulty, 2);
+			player2 = new IA(difficulty, 2);
 		}
 
 		//While game's not over
@@ -48,7 +48,8 @@ public class Game {
 			}
 		}else {
 			if (difficulty == 0) {
-				Interface.winnerScreen(player2.getName());
+				Human player2Aux = (Human) player2;
+				Interface.winnerScreen(player2Aux.getName());
 			}else {
 				Interface.loserScreen();
 			}
