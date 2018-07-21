@@ -2,7 +2,9 @@ package tictactoe.frontend;
 
 import tictactoe.backend.Board;
  
-public class Interface {
+public abstract class Interface {
+
+	//imprime o tabuleiro no console limpando a tela
 	public static void printBoard(Board board) {
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
@@ -10,4 +12,26 @@ public class Interface {
 			}
 		}
 	}
-}
+	
+	//imprime a primeira tela do programa
+	public static void firstScreen() {
+		System.out.println("\nTic Tac Toe\n");
+		System.out.println("Choose game mode:");
+		System.out.println("1 - Player vs Player");
+		System.out.println("2 - Player vs IA");
+	}
+	
+	//imprime a segunda tela do 
+	public static void difficultyScreen() {
+		System.out.println("\nChoose IA difficulty:");
+		System.out.println("1 - Easy");
+		System.out.println("2 - Normal");
+		System.out.println("3 - Hard");
+	}
+	
+	//imprime a tela do ganhador
+	public static void winnerScreen(int winner) {
+		
+		
+		
+	}
