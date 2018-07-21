@@ -1,4 +1,4 @@
-package tictactoe.backend;
+package tictactoe.elements;
 
 public class Board {
 	private char[][] cells;
