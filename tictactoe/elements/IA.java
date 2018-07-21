@@ -9,9 +9,8 @@ public class IA implements Player {
 	private int number;
 	private Random random;
 
-	public IA(int difficulty, Board board) {
-		this.difficulty = difficulty;
-		this.board = board;
+	public IA(int difficulty) {
+		this.setDifficulty(difficulty);
 		random = new Random();
 	}
 
@@ -42,5 +41,12 @@ public class IA implements Player {
 	@Override
 	public int getNumber() {
 		return this.number;
+	}
+
+	public void setDifficulty(boolean difficulty) {
+		this.difficulty = difficulty;
+	}
+	public boolean getDifficulty() {
+		return this.difficulty;
 	}
 }
