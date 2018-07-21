@@ -15,9 +15,8 @@ public class IA implements Player {
 	}
 
 	@Override
-	public void play() {
+	public int[] chooseCell(Board board) {
 		int[] choice = makeChoice(board);
-		Engine.play(board, this, choice[0], choice[1]);
 	}
 
 	public int[] makeChoice(Board board) {
@@ -28,6 +27,13 @@ public class IA implements Player {
 		} while (!Engine.checkEmptyCell(board, x, y));
 		return (new int[] {x, y});
 	}
+
+	// public int[] makeEstrategicChoice(Board board) {
+	// 	int x, y;
+	//
+	// 	return new int[] {x, y};
+	// }
+
 	@Override
 	public void setNumber(int number) {
 		super.number = number;

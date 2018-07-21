@@ -2,7 +2,7 @@ package tictactoe.elements;
 
 public interface Player {
 	int number;
-	void chooseCell();
+	int[] chooseCell();
   void setNumber();
   int getNumber();
 }
