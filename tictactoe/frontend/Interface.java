@@ -48,8 +48,8 @@ public abstract class Interface {
 	public static void endScreen(){
 		System.out.println("Game Over!");
 		System.out.println();		
-		System.out.println("1 - Restart game(Don't change players");
-		System.out.println("2 - Restart game(Change players");
+		System.out.println("1 - Restart game(Don't change players)");
+		System.out.println("2 - Restart game(Change players)");
 		System.out.println("3 - Exit Game");
 	}
 	
