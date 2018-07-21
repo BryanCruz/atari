@@ -1,7 +1,7 @@
 package tictactoe.frontend;
 
 import tictactoe.backend.Board;
- 
+
 public abstract class Interface {
 
 	//imprime o tabuleiro no console limpando a tela
@@ -12,7 +12,7 @@ public abstract class Interface {
 			}
 		}
 	}
-	
+
 	//imprime a primeira tela do programa
 	public static void firstScreen() {
 		System.out.println("\nTic Tac Toe\n");
@@ -20,18 +20,26 @@ public abstract class Interface {
 		System.out.println("1 - Player vs Player");
 		System.out.println("2 - Player vs IA");
 	}
-	
-	//imprime a segunda tela do 
+
+	//imprime a segunda tela do
 	public static void difficultyScreen() {
 		System.out.println("\nChoose IA difficulty:");
 		System.out.println("1 - Easy");
 		System.out.println("2 - Normal");
 		System.out.println("3 - Hard");
 	}
-	
+
 	//imprime a tela do ganhador
 	public static void winnerScreen(int winner) {
-		
-		
-		
+    //não sei direito como vai ser para pegar o player do vetor, deixei isso por enquanto
+    //PERDEU
+    if (players[winner] instanceof IA) {
+      System.out.println("GAME OVER");
+      System.out.println("You Lost!");
+
+    } else {  //Ganhou
+      System.out.println(players[winner].getName() + "GANHOU!")
+    }
+
+
 	}
