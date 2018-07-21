@@ -48,5 +48,9 @@ public abstract class Interface {
 		System.out.println("2 - Exit Game");
 	}
 	
+	//imprime a interface para insercão dos nomes
+	public static void nameScreen(int playerNumber) { 		
+		System.out.println("Insert player"+ playerNumber +"'s name");
+	}
 
 }
