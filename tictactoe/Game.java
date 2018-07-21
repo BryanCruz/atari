@@ -6,7 +6,7 @@ import tictactoe.backend.Engine;
 import tictactoe.frontend.Interface;
 
 public class Game {
-	public static void startGame(int boardSize) {
+	public static void startGame(int boardSize, Player player1, Player player2) {
 		Board board = new Board(boardSize);
 		Engine.clearBoard(board);
 
@@ -17,7 +17,7 @@ public class Game {
 			int j = scanner.nextInt();
 
 			if (i >= 0 && i < boardSize && j >= 0 && j < boardSize && Engine.checkEmptyCell(board, i, j) == '-') {
-				Engine.play(i, j);
+				Engine.play(board, i, j);
 				Interface.printBoard(board);
 			}
 		}
