@@ -45,7 +45,7 @@ public class IA implements Player {
 		return this.number;
 	}
 
-	public void setDifficulty(boolean difficulty) {
+	public void setDifficulty(int difficulty) {
 		this.difficulty = difficulty;
 	}
 	public int getDifficulty() {
