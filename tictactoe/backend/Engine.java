@@ -72,7 +72,7 @@ public abstract class Engine {
     if(countDiagonal1 == boardSize || countDiagonal2 == boardSize){
       return 1;
     }else if(countDiagonal1 == -boardSize || countDiagonal2 == -boardSize){
-      return -1;
+      return 2;
     }
 
     // se chegou até aqui, ninguém ganhou
