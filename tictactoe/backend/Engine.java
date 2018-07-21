@@ -24,16 +24,59 @@ public abstract class Engine {
     return board.getCell(i, j) == emptySymbol;
   }
 
+  // retorna 1 se o player1 ganhar
+  // retorna 2 se o player2 ganhar
   public static int checkWin(Board board) {
     int boardSize = board.getBoardSize();
-    int countHorizontal = 0, countVertical = 0, countDiag1 = 0, countDiag2 = 0; 
 
+    // cria uma matriz de células para facilitar a verificação
+    int[][] cells = new int[boardSize][boardSize];
     for(int i = 0; i < boardSize; i++){
-      countHorizontal = 0;
       for(int j = 0; j < boardSize; j++){
-        if()
+        char c = board.getCell(i, j);
+        if(c == emptySymbol){
+          cells[i][j] = 0;
+        }else if(c == player1Symbol){
+          cells[i][j] = 1;
+        }else{
+          cells[i][j] = -1;
+        }
       }
     }
+    
+    // checagem horizontal e vertical
+    for(int i = 0; i < boardSize; i++){
+      int countHorizontal = 0;
+      int countVertical   = 0;
+
+      for(int j = 0; j < boardSize; j++){
+        countHorizontal += cells[i][j];
+        countVertical   += cells[j][i];
+      }
+    
+      if(countHorizontal == boardSize || countVertical == boardSize) {
+        return 1;
+      }else if(countHorizontal == -boardSize || countVertical == -boardSize){
+        return 2;
+      }
+    }
+
+    // checagem diagonal
+    int countDiagonal1 = 0;
+    int countDiagonal2 = 0;
+    for(int i = 0; i < boardSize; i++){
+      countDiagonal1 += cells[i][i];
+      countDiagonal2 += cells[i][boardSize - i - 1];
+    }
+
+    if(countDiagonal1 == boardSize || countDiagonal2 == boardSize){
+      return 1;
+    }else if(countDiagonal1 == -boardSize || countDiagonal2 == -boardSize){
+      return -1;
+    }
+
+    // se chegou até aqui, ninguém ganhou
+    return 0;
   }
 
   public static boolean gameOver(Board board) {
