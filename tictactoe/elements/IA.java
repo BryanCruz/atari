@@ -1,5 +1,7 @@
 package tictactoe.elements;
 
+import tictactoe.elements.Board;
+import tictactoe.backend.Engine;
 import java.util.Random;
 
 public class IA implements Player {
