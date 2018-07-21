@@ -10,7 +10,7 @@ public abstract class Engine {
   private static final char player2Symbol = 'O';
 
   // clear the board for a new game
-  private static void clearBoard(Board board) {
+  public static void clearBoard(Board board) {
     int size = board.getBoardSize();
     for(int i = 0; i < size; i++){
       for(int j = 0; j < size; j++){
