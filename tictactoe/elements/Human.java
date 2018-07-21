@@ -30,8 +30,8 @@ public class Human implements Player {
 	public int[] chooseCell() {
 		Scanner sc = new Scanner();
 		
-		int x = sc.nextInt;
-		int y = sc.nextInt;
+		int x = sc.nextInt();
+		int y = sc.nextInt();
 		
 		return (new int[] {x, y});
 	}
