@@ -12,13 +12,14 @@ class Main {
 		Interface.firstScreen();
 
 		// checks if it is a multiplayer game
-		boolean multiplayer = sc.nextInt() == 1 ? false : true;
-		if(multiplayer){
+		boolean multiplayer = sc.nextInt() != 1;
+		if (multiplayer) {
 			difficulty = 0;
-		}else{
+		}
+		else {
 			// if it isn't, the player chooses a difficulty to play
 			Interface.difficultyScreen();
-			difficultyIA = sc.nextInt();
+			difficulty = sc.nextInt();
 		}
 
 		// start a game
