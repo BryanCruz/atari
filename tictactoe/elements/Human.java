@@ -29,11 +29,13 @@ public class Human implements Player {
 		this.number = number;
 	}
 
-	public int[] chooseCell() {
+	@Override
+	public int[] chooseCell(Board board) {
 		Scanner sc = new Scanner();
-
-		int x = sc.nextInt();
-		int y = sc.nextInt();
+		do {
+			int x = sc.nextInt();
+			int y = sc.nextInt();
+		} while (!Engine.checkEmptyCell(board, x, y));
 
 		return (new int[] {x, y});
 	}
