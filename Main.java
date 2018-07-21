@@ -5,6 +5,7 @@ class Main {
 	public static void main(String[] args) {
 		boolean multiplayer;
 		int boardSize, difficultyIA;
+		Scanner sc = new Scanner();
 		
 		boardSize = 3;
 		

@@ -6,6 +6,7 @@ public class IA implements Player {
 
 	private Board board;
 	private int difficulty;
+	private int number;
 	private Random random;
 
 	public IA(int difficulty, Board board) {
@@ -36,10 +37,10 @@ public class IA implements Player {
 
 	@Override
 	public void setNumber(int number) {
-		super.number = number;
+		this.number = number;
 	}
 	@Override
 	public int getNumber() {
-		return super.number;
+		return this.number;
 	}
 }
