@@ -14,7 +14,7 @@ public class Board {
 		this.cells = cells;
 	}
 
-	public void getCell(int i, int j) {
+	public char getCell(int i, int j) {
 		return this.getCells()[i][j];
 	}
 	public void setCell(int i, int j, char c) {
