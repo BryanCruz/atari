@@ -5,37 +5,23 @@ public class Board {
 
 	public Board(int boardSize) {
 		this.setCells(new char[boardSize][boardSize]);
-		this.clearBoard();
 	}
 	
-	public char[][] getCells(){
+	private char[][] getCells() {
 		return this.cells;
 	}
 	private void setCells(char[][] cells){
 		this.cells = cells;
 	}
 
-	public void setCell(int i, int j, char c) throws invalidSymbolException {
-		if(c == 'X' || c == 'O') 
-			this.getCells()[i][j] = c;
-		else
-			throw new InvalidSymbolException();
+	public void getCell(i, j){
+		return this.getCells()[i][j];
 	}
-
-	private void clearCell(int i, int j){
-		this.getCells()[i][j] = '-';
+	public void setCell(int i, int j, char c) {
+		this.getCells()[i][j] = c;
 	}
 
 	public int getBoardSize(){
 		return this.getCells().length;
-	}
-
-	public void clearBoard(){
-		char[][] cells = this.getCells();
-		for(int i = 0; i < cells.length; i++){
-			for(int j = 0; j < cells[0].length; j++){
-				this.clearCell(i, j);
-			}
-		}
 	}
 }
