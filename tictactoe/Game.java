@@ -2,6 +2,7 @@ package tictactoe;
 
 import java.util.Scanner;
 import tictactoe.backend.Board;
+import tictactoe.frontend.Interface;
 
 public class Game {
 	public static void startGame() {
@@ -15,7 +16,7 @@ public class Game {
 
 			if (i >= 0 && i < 3 && j >= 0 && j < 3 && board.getCells()[i][j] == '-') {
 				board.play(i, j);
-				board.printBoard();
+				Interface.printBoard(board);
 			}
 		}
 
