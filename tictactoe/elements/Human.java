@@ -1,6 +1,7 @@
 package tictactoe.elements;
 
 import java.util.Scanner;
+import tictactoe.backend.Engine;
 
 public class Human implements Player {
 	private String name;
