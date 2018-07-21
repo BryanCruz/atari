@@ -31,10 +31,11 @@ public class Human implements Player {
 
 	@Override
 	public int[] chooseCell(Board board) {
-		Scanner sc = new Scanner();
+		Scanner sc = new Scanner(System.in);
+		int x, y;
 		do {
-			int x = sc.nextInt();
-			int y = sc.nextInt();
+			x = sc.nextInt();
+			y = sc.nextInt();
 		} while (!Engine.checkEmptyCell(board, x, y));
 
 		return (new int[] {x, y});
