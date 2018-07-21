@@ -15,6 +15,7 @@ public class Game {
 		// create player 1
 		Interface.nameScreen(1);
 		Player player1 = new Human(scanner.nextLine(), 1);
+
 		// create player 2
 		Player player2;
 		if (difficulty == 0) {
@@ -26,17 +27,18 @@ public class Game {
 			player2 = new IA(difficulty, 2);
 		}
 
-		//While game's not over
+		// while game's not over
+		boolean player1Turn = true;
 		while(!Engine.checkGameOver(board)) {
-			int i = scanner.nextInt();
-			int j = scanner.nextInt();
-
-			if (i >= 0 && i < boardSize && j >= 0 && j < boardSize && Engine.checkEmptyCell(board, i, j) == '-') {
-				Engine.play(board, i, j);
-				Interface.printBoard(board);
-			}
+			// the actual player chooses a cell to play
+			Player actualPlayer = player1Turn ? player1 : player2;
+			int[] playedCells = actualPlayer.chooseCell(board);
+			int x = playedCells[0], y = playedCells[1];
+		
+			// the engine fills that cell
+			Engine.play(board, actualPlayer, x, y);
+			Interface.printBoard(board);
 		}
-
 
 		if (Engine.checkWin(board) == 0) {
 			Interface.tieScreen();
