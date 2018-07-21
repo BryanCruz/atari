@@ -26,7 +26,7 @@ public abstract class Engine {
         return 1;
       }
       if (board.checkColumn[i] == -3 || board.checkLine[i] == -3 || board.checkDiagonal[i] == -3) {
-        return -1;
+        return 2;
       }
       return 0;
     }
