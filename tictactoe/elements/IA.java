@@ -17,7 +17,7 @@ public class IA implements Player {
 	@Override
 	public void play() {
 		int[] choice = makeChoice(board);
-		board.setCell(choice[0], choice[1], )
+		board.setCell(choice[0], choice[1])
 	}
 
 	public int[] makeChoice(Board board) {
