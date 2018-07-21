@@ -31,15 +31,16 @@ public abstract class Interface {
 
 	//imprime a tela do ganhador
 	public static void winnerScreen(int winner) {
-    //não sei direito como vai ser para pegar o player do vetor, deixei isso por enquanto
-    //PERDEU
-    if (players[winner] instanceof IA) {
-      System.out.println("GAME OVER");
-      System.out.println("You Lost!");
+		//não sei direito como vai ser para pegar o player do vetor, deixei isso por enquanto
+		//PERDEU
+		if (players[winner] instanceof IA) {
+			System.out.println("GAME OVER");
+			System.out.println("You Lost!");
 
-    } else {  //Ganhou
-      System.out.println(players[winner].getName() + "GANHOU!")
-    }
-
-
+		} else {  //Ganhou
+			if (player1.isHuman() && player2.isHuman())
+			System.out.println(players[winner].getName() + "GANHOU!");
+		}		
 	}
+	
+}
