@@ -6,11 +6,25 @@ import tictactoe.backend.Engine;
 import tictactoe.frontend.Interface;
 
 public class Game {
-	public static void startGame(int boardSize, boolean multiplayer) {
+	public static void startGame(int boardSize, boolean multiplayer, int difficultyIA) {
+		
 		Board board = new Board(boardSize);
 		Engine.clearBoard(board);
-
 		Scanner scanner = new Scanner(System.in);
+		
+		Interface.nameScreen(1);		
+		Player player1 = new Human(scanner.nextLine());
+		
+		if (multiplayer) {
+			Interface.nameScreen(2);			
+			Player player2 = new Human(scanner.nextLine()); 
+		} else {			
+			Player player2 = new IA(difficultyIA);
+		}
+		
+		
+
+		
 
 		while(!Engine.gameOver(board)) {
 			int i = scanner.nextInt();
