@@ -3,22 +3,22 @@ package tictactoe.backend;
 public abstract class Engine {
 
   private static int countCells = 0;
-
-  public static void startGame(int n){
-    Board board = new Board(n);
-    Engine.clearBoard(board);
-  }
+  private static final char emptySymbol = '-'; 
 
   private static void clearBoard(Board board){
     int n = board.getBoardSize();
     for(int i = 0; i < n; i++){
       for(int j = 0; j < n; j++){
-        board.setCell(i, j, '-');
+        board.setCell(i, j, emptySymbol);
       }
     }
   }
 
   public static void play
+
+  public static boolean checkEmptyCell(Board board, int i, int j){
+      return board.getCell(i, j) == emptySymbol;
+  }
 
   public static int checkWin(Board board) {
     for (int i = 0;i < 3;i++) {
