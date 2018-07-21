@@ -1,5 +1,7 @@
 package tictactoe.backend;
 
+import tictactoe.elements.*;
+
 public abstract class Engine {
 
   private static final char emptySymbol   = '-';
