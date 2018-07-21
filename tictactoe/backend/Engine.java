@@ -3,7 +3,7 @@ package tictactoe.backend;
 public abstract class Engine {
 
   private static int countCells = 0;
-  private static final char emptySymbol = '-'; 
+  private static final char emptySymbol = '-';
 
   private static void clearBoard(Board board){
     int n = board.getBoardSize();
@@ -14,7 +14,9 @@ public abstract class Engine {
     }
   }
 
-  public static void play
+  public static void play() {
+    
+  }
 
   public static boolean checkEmptyCell(Board board, int i, int j){
       return board.getCell(i, j) == emptySymbol;
