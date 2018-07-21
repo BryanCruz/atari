@@ -43,9 +43,9 @@ public abstract class Interface {
 		}
 
 		System.out.println();
-		System.out.println("1 - Restart game(Don't change players");
-		System.out.println("2 - Restart game(Change players");
-		System.out.println("2 - Exit Game");
+		System.out.println("1 - Restart game(Don't change players)");
+		System.out.println("2 - Restart game(Change players)");
+		System.out.println("3 - Exit Game");
 	}
 	
 	//imprime a interface para insercão dos nomes
