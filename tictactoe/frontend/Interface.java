@@ -32,7 +32,7 @@ public abstract class Interface {
 
 	//imprime a tela de vencedor
 	public static void winnerScreen(String player){
-		System.out.println(player " WON!!!");
+		System.out.println(player + " WON!!!");
 	}
 
 	//imprime a tela de empate
