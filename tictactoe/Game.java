@@ -41,13 +41,13 @@ public class Game {
 		if (Engine.checkWin(board) == 0) {
 			Interface.tieScreen();
 		} else if (Engine.checkWin(board) == 1){
-			if (multiplayer) {
+			if (difficulty == 0) {
 				Interface.winnerScreen(player1.getName());
 			}else {
 				Interface.winnerScreen("YOU");
 			}
 		}else {
-			if (multiplayer) {
+			if (difficulty == 0) {
 				Interface.winnerScreen(player2.getName());
 			}else {
 				Interface.loserScreen();
