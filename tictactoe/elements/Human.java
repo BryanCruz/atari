@@ -25,8 +25,8 @@ public class Human implements Player {
 	}
 
 	@Override
-	public void setNumber() {
-		this.nome = nome;
+	public void setNumber(int number) {
+		this.number = number;
 	}
 
 	public int[] chooseCell() {
