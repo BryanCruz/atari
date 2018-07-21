@@ -19,6 +19,16 @@ public class Board {
 		this.player1 = true;
 	}
 
+	public void printBoard(){
+		char[][] cells = this.getCells();
+		for(int i = 0; i < cells.length; i++){
+			for(int j = 0; j < cells[0].length; j++){
+				System.out.printf("| %c |", cells[i][j]);
+			}
+			System.out.println();
+		}
+	}
+
 	public char[][] getCells(){
 		return this.cells;
 	}
