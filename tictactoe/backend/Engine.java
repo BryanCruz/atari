@@ -43,7 +43,7 @@ public abstract class Engine {
         }
       }
     }
-    
+
     // checagem horizontal e vertical
     for(int i = 0; i < boardSize; i++){
       int countHorizontal = 0;
@@ -53,7 +53,7 @@ public abstract class Engine {
         countHorizontal += cells[i][j];
         countVertical   += cells[j][i];
       }
-    
+
       if(countHorizontal == boardSize || countVertical == boardSize) {
         return 1;
       }else if(countHorizontal == -boardSize || countVertical == -boardSize){
@@ -84,6 +84,6 @@ public abstract class Engine {
   }
 
   public static void setCountCells() {
-    Logic.countCells++;
+    Engine.countCells++;
   }
 }
