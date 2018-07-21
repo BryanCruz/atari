@@ -6,7 +6,7 @@ import tictactoe.backend.Engine;
 import tictactoe.frontend.Interface;
 
 public class Game {
-	public static void startGame(int boardSize, Player player1, Player player2) {
+	public static void startGame(int boardSize, boolean multiplayer) {
 		Board board = new Board(boardSize);
 		Engine.clearBoard(board);
 
