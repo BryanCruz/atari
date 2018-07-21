@@ -86,8 +86,20 @@ public abstract class Engine {
     return 0;
   }
 
+  // checks if the board is full
+  public static boolean checkFullBoard(Board board){
+    int boardSize = board.getBoardSize();
+    for(int i = 0; i < boardSize; i++){
+      for(int j = 0; j < boardSize; j++){
+        if(Engine.checkEmptyCell(board.getCell(i, j))) return false;
+      }
+    }
+
+    return true;
+  }
+
   // checks if the game is over
   public static boolean checkGameOver(Board board) {
-    return (checkWin(board) != 0 || countCells == size * size);
+    return (Engine.checkFullBoard() || Engine.checkWin(board) != 0);
   }
 }
