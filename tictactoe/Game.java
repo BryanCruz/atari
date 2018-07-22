@@ -47,8 +47,13 @@ public class Game {
 			Interface.tieScreen();
 		}
 		else {
-			if (players[winner - 1] instanceof Human) {
-				Interface.winnerScreen(((Human)players[winner - 1]).getName());
+			Player winnerPlayer = players[winner-1];
+			Player loserPlayer  = players[2 - winner];
+			if (winnerPlayer instanceof Human) {
+				if(loserPlayer instanceof Human)
+					Interface.winnerScreen(((Human) winnerPlayer).getName());
+				else 
+					Interface.winnerScreen("YOU");
 			}
 			else {
 				Interface.loserScreen();
