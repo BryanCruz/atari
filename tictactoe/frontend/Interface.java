@@ -68,7 +68,7 @@ public abstract class Interface {
 	}
 	
 	public static void tutorialSelectScreen() {
-		System.out.println("\nPress Y/y to show a tutorial on how to select cells");
+		System.out.println("\nPress Y/y or Enter key to show a tutorial on how to select cells");
 		System.out.println("Press any other key to skip"); 
 	}
 	

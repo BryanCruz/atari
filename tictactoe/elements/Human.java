@@ -44,10 +44,8 @@ public class Human implements Player {
 	public int[] chooseCell(Board board) {
 		Scanner sc = new Scanner(System.in);
 		int x, y;
-		do {
-			x = sc.nextInt();
-			y = sc.nextInt();
-		} while (!Engine.checkEmptyCell(board, x, y));
+		x = sc.nextInt();
+		y = sc.nextInt();
 
 		return (new int[] {x, y});
 	}

@@ -30,19 +30,24 @@ public class Game {
 		
 		//prints a screen to select or skip the tutorial
 		Interface.tutorialSelectScreen();
-		char showTutorial = scanner.next().charAt(0);
+		String tutorialOption = scanner.nextLine();
+		boolean showTutorial = tutorialOption.isEmpty() || tutorialOption.charAt(0) == 'y' || tutorialOption.charAt(0) == 'Y'; 
 		
 		//prints or skip the tutorial screen
-		if(showTutorial == 'y' || showTutorial == 'Y')
+		if(showTutorial)
 			Interface.tutorialScreen(board.getBoardSize());
 		
 		// while game's not over
 		int actualPlayer = 0;
 		while(!Engine.checkGameOver(board)) {
 			// the actual player chooses a cell to play
-			Interface.playScreen(players[actualPlayer]);
-			int[] playedCells = players[actualPlayer].chooseCell(board);
-			int x = playedCells[0], y = playedCells[1];
+			int x, y;
+			do{
+				Interface.playScreen(players[actualPlayer]);
+				int[] playedCells = players[actualPlayer].chooseCell(board);
+				x = playedCells[0]-1;
+				y = playedCells[1]-1;
+			}while(x < 0 || x >= boardSize || y < 0 || y >= boardSize || !Engine.checkEmptyCell(board, x, y));
 
 			// the engine fills that cell
 			Engine.play(board, players[actualPlayer], x, y);
