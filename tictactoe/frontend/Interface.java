@@ -64,7 +64,7 @@ public abstract class Interface {
 	
 	//imprime a interface para insercão dos nomes
 	public static void nameScreen(int playerNumber) { 		
-		System.out.println("Insert player " + playerNumber + "'s name");
+		System.out.print("Insert player " + playerNumber + " name: ");
 	}
 
 }
