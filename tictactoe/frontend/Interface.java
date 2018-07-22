@@ -72,11 +72,10 @@ public abstract class Interface {
 		System.out.println("Press any other key to skip"); 
 	}
 	
-	public static void tutorialScreen(char c, Board board) {
-		if (c == 'y' || c == 'Y') 	
-			System.out.println("\nHow to play:");
-			System.out.println("The board is a matrix of " + board.getBoardSize() + "x" + board.getBoardSize() + " elements.");
-			System.out.println("When asked to choose a cell, type with spaces the index of the cell you want.");
-			System.out.println("Example: 0 0, puts your draw(X or O) in the first cell of the matrix.\n");
+	public static void tutorialScreen(int boardSize) {
+		System.out.println("\nHow to play:");
+		System.out.println("The board is a matrix of " + boardSize + "x" + boardSize + " elements.");
+		System.out.println("When asked to choose a cell, type with spaces the indexes of the cell you want.");
+		System.out.println("Example: 1 2, puts your draw (X or O) in the cell at the first line and second column of the matrix.\n");
 	}
 }

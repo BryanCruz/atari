@@ -30,9 +30,11 @@ public class Game {
 		
 		//prints a screen to select or skip the tutorial
 		Interface.tutorialSelectScreen();
+		char showTutorial = scanner.next().charAt(0);
 		
 		//prints or skip the tutorial screen
-		Interface.tutorialScreen(scanner.next().charAt(0), board);
+		if(showTutorial == 'y' || showTutorial == 'Y')
+			Interface.tutorialScreen(board.getBoardSize());
 		
 		// while game's not over
 		int actualPlayer = 0;
