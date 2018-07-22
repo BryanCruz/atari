@@ -27,18 +27,19 @@ public class Game {
 			//If it's singleplayer, instatiates an IA
 			players[1] = new IA(difficulty, 2);
 		}
-		
+
 		//prints a screen to select or skip the tutorial
 		Interface.tutorialSelectScreen();
 		String tutorialOption = scanner.nextLine();
-		boolean showTutorial = tutorialOption.isEmpty() || tutorialOption.charAt(0) == 'y' || tutorialOption.charAt(0) == 'Y'; 
-		
+		boolean showTutorial = tutorialOption.isEmpty() || tutorialOption.charAt(0) == 'y' || tutorialOption.charAt(0) == 'Y';
+
 		//prints or skip the tutorial screen
 		if(showTutorial)
 			Interface.tutorialScreen(board.getBoardSize());
-		
+
 		// while game's not over
 		int actualPlayer = 0;
+		Interface.printBoard(board);
 		while(!Engine.checkGameOver(board)) {
 			// the actual player chooses a cell to play
 			int x, y;
@@ -65,7 +66,7 @@ public class Game {
 			if (winnerPlayer instanceof Human) {
 				if(loserPlayer instanceof Human)
 					Interface.winnerScreen(((Human) winnerPlayer).getName());
-				else 
+				else
 					Interface.winnerScreen("YOU");
 			}
 			else {
