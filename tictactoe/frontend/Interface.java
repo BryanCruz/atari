@@ -66,5 +66,17 @@ public abstract class Interface {
 	public static void nameScreen(int playerNumber) { 		
 		System.out.print("Insert player " + playerNumber + " name: ");
 	}
-
+	
+	public static void tutorialSelectScreen() {
+		System.out.println("\nPress Y/y to show a tutorial on how to select cells");
+		System.out.println("Press any other key to skip"); 
+	}
+	
+	public static void tutorialScreen(char c, Board board) {
+		if (c == 'y' || c == 'Y') 	
+			System.out.println("\nHow to play:");
+			System.out.println("The board is a matrix of " + board.getBoardSize() + "x" + board.getBoardSize() + " elements.");
+			System.out.println("When asked to choose a cell, type with spaces the index of the cell you want.");
+			System.out.println("Example: 0 0, puts your draw(X or O) in the first cell of the matrix.\n");
+	}
 }

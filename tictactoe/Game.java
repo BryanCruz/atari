@@ -27,7 +27,13 @@ public class Game {
 			//If it's singleplayer, instatiates an IA
 			players[1] = new IA(difficulty, 2);
 		}
-
+		
+		//prints a screen to select or skip the tutorial
+		Interface.tutorialSelectScreen();
+		
+		//prints or skip the tutorial screen
+		Interface.tutorialScreen(scanner.next().charAt(0), board);
+		
 		// while game's not over
 		int actualPlayer = 0;
 		while(!Engine.checkGameOver(board)) {
