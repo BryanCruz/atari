@@ -10,7 +10,7 @@ public abstract class Interface {
 	public static void printBoard(Board board) {
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
-				System.out.printf(" %c %c", board.getCell(i, j), (j == 2 ? '\n' : '|'));
+				System.out.printf(" %c %c", board.getCell(i, j).getSymbol(), (j == 2 ? '\n' : '|'));
 			}
 		}
 		System.out.println();
