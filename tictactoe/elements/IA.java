@@ -6,14 +6,16 @@ import java.util.Random;
 
 public class IA implements Player {
 
-	private Board board;
+	//private Board board;
 	private int difficulty;
 	private int number;
+	private char symbol;
 	private Random random;
 
-	public IA(int difficulty, int number) {
+	public IA(int difficulty, int number, char symbol) {
 		this.setDifficulty(difficulty);
 		this.setNumber(number);
+		this.setSymbol(symbol);
 		random = new Random();
 	}
 
@@ -31,11 +33,15 @@ public class IA implements Player {
 		return (new int[] {x+1, y+1});
 	}
 
-	// public int[] makeEstrategicChoice(Board board) {
-	// 	int x, y;
-	//
-	// 	return new int[] {x, y};
-	// }
+	/*
+	public int[] makeStrategicChoice(Board board) {
+		int x, y;
+			Engine.checkPossibleWin();
+		
+	
+	 	return new int[] {x, y};
+	 }
+	 */
 
 	@Override
 	public void setNumber(int number) {
@@ -51,5 +57,15 @@ public class IA implements Player {
 	}
 	public int getDifficulty() {
 		return this.difficulty;
+	}
+
+	@Override
+	public void setSymbol(char symbol) {
+		this.symbol = symbol;
+	}
+
+	@Override
+	public char getSymbol() {
+		return this.symbol;
 	}
 }
