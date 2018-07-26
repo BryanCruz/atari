@@ -20,8 +20,14 @@ public abstract class Engine {
 
   // make a play, i.e, defines a value for a cell in the board
   public static void play(Board board, Player player, int i, int j) {
-    Cell cell = player.getNumber() == 1 ? new Cell(player.getSymbol(), 1) : new Cell(player.getSymbol(), -1);
-    board.setCell(i, j, cell);
+    Cell tmp = board.getCell(i,j);
+    tmp.setSymbol(player.getSymbol());
+    
+    if (player.getNumber() == 1) {
+      tmp.setValue(1);
+    } else {
+      tmp.setValue(-1);
+    }
   }
 
   // checks if the cell has already been played
