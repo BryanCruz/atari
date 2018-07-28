@@ -45,9 +45,30 @@ public class Human implements Player {
 	@Override
 	public int[] chooseCell(Board board) {
 		Scanner sc = new Scanner(System.in);
-		int x, y;	
-		x = sc.nextInt();
-		y = sc.nextInt();
+		int x, y;
+		try{
+			x = sc.nextInt();
+			y = sc.nextInt();
+
+			if(x < 1 || x > board.getBoardSize() || y < 1 || y > board.getBoardSize()){
+				throw new CellsOutOfRangeException();
+			}else if(!Engine.checkEmptyCell(board, x, y)){
+				throw new CellNotEmptyException();
+			}
+		}
+		catch(InputMismatchException e){
+			System.out.println("Only numbers are allowed here");
+			return (new int[] {-1, -1});
+		}
+		catch(CellsOutOfRangeException e){
+			System.out.println("This cell doesn't exist in the board");
+			return (new int[] {-1, -1});
+		}
+		catch(CellNotEmptyException e){
+			System.out.println("This cell has already been played");
+			return (new int[] {-1, -1});
+		}
+
 		return (new int[] {x, y});
 	}
 
