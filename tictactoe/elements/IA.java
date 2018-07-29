@@ -35,10 +35,10 @@ public class IA implements Player{
 
 
 	//Recursive algorithm that utilizes minMax strategy
-	public int[] makeStrategicChoice(Board board, int difficulty, Player currentPlayer, Player oppenent) {
+	public int[] makeStrategicChoice(Board board, int difficulty, Player currentPlayer, Player opponent) {
 		int bestScore = 0;
 		int row = -1;
-		int collum = -1;
+		int column = -1;
 		int score;
 
 		//base case
@@ -62,7 +62,7 @@ public class IA implements Player{
 		for (int i = 0; i < board.getBoardSize(); i++) {
 			for (int j = 0; j < board.getBoardSize(); j++) {
 
-				// Player is opponent, need to minimize
+				// Player is opponent(Human), need to minimize
 				if (currentPlayer instanceof Human) {
 					bestScore = 999999;
 
@@ -70,17 +70,17 @@ public class IA implements Player{
 					if (Engine.checkEmptyCell(board, i, j)) {
 						Engine.play(board, currentPlayer, i, j);
 
-						score = makeStrategicChoice(board, difficulty - 1, oppenent, currentPlayer)[0];
+						score = makeStrategicChoice(board, difficulty - 1, opponent, currentPlayer)[2];
 
-						//If the score of this play is lower than the best score we update
+						//If the score of this play is lower than bestScore we update
 						if (score < bestScore) {
 							bestScore = score;
 							row = i;
-							collum = j;
+							column = j;
 						}
 					}
 
-				//Player is human, need to maximize
+				//Player is AI, need to maximize
 				} else {
 					bestScore = -9999999;
 
@@ -88,20 +88,24 @@ public class IA implements Player{
 					if (Engine.checkEmptyCell(board, i, j)) {
 						Engine.play(board, currentPlayer, i, j);
 
-						score = makeStrategicChoice(board, difficulty - 1, oppenent, currentPlayer)[0];
+						score = makeStrategicChoice(board, difficulty - 1, opponent, currentPlayer)[2];
 
-						//If the score of this play is lower than the best score we update
+						//If the score of this play is higher than bestScore, it updates
 						if (score > bestScore) {
 							bestScore = score;
 							row = i;
-							collum = j;
+							column = j;
 						}
 					}
 				}
+				//Undo the play
+				Engine.setEmptyCell(board, i, j);
 			}
 		}
 
-		return new int[] {bestScore, row, collum};
+
+
+		return new int[] {row, column, bestScore};
 	}
 
 	@Override
