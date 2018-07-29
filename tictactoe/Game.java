@@ -44,10 +44,16 @@ public class Game {
 			// the actual player chooses a cell to play
 			int x, y;
 			do{
-				Interface.playScreen(players[actualPlayer]);
-				int[] playedCells = players[actualPlayer].chooseCell(board);
-				x = playedCells[0]-1;
-				y = playedCells[1]-1;
+				try{
+					Interface.playScreen(players[actualPlayer]);
+					int[] playedCells = players[actualPlayer].chooseCell(board);
+					x = playedCells[0]-1;
+					y = playedCells[1]-1;
+				}
+				catch(Exception e){
+					x = y = -1;
+					System.out.println(e.getMessage());
+				}
 			}while(x < 0 || x >= boardSize || y < 0 || y >= boardSize || !Engine.checkEmptyCell(board, x, y));
 
 			// the engine fills that cell
