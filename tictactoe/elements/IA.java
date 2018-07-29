@@ -44,7 +44,7 @@ public class IA implements Player{
 		int bestScore = 0;
 		int row = -1;
 		int column = -1;
-		score = Engine.checkWin(board);
+		int score = Engine.checkWin(board);
 
 		//base case
 		if (Engine.checkFullBoard(board) || difficulty == 0 || score != 0 ) {
@@ -68,7 +68,7 @@ public class IA implements Player{
 			for (int j = 0; j < board.getBoardSize(); j++) {
 				// Player is opponent(Human), need to minimize
 				if (currentPlayer instanceof Human) {
-					bestScore = 999999;
+					bestScore = Integer.MAX_VALUE;
 
 					// If cell's empty
 					if (Engine.checkEmptyCell(board, i, j)) {
@@ -85,14 +85,9 @@ public class IA implements Player{
 					}
 
 				//Player is AI, need to maximize
-<<<<<<< HEAD
-				} else {
-					bestScore = -9999999;
-=======
 				}
 				else {
 					bestScore = Integer.MIN_VALUE;
->>>>>>> 619994e599af81295c460ec773095859ede2d2ac
 
 					// If cell's empty
 					if (Engine.checkEmptyCell(board, i, j)) {
