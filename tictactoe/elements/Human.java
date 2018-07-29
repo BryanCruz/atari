@@ -18,6 +18,7 @@ public class Human implements Player {
 	}
 	
 	//Return user's username
+	@Override
 	public String getName() {
 		return this.name;
 	}
@@ -43,18 +44,12 @@ public class Human implements Player {
 		Return a vector with the position of the cell (x,y)	
 	*/
 	@Override
-	public int[] chooseCell(Board board) throws java.util.InputMismatchException, CellNotEmptyException, CellsOutOfRangeException{
+	public int[] chooseCell(Board board){
 		Scanner sc = new Scanner(System.in);
 		int x, y;
-		x = sc.nextInt();
-		y = sc.nextInt();
-
-		if(x < 1 || x > board.getBoardSize() || y < 1 || y > board.getBoardSize()){
-			throw new CellsOutOfRangeException();
-		}else if(!Engine.checkEmptyCell(board, x, y)){
-			throw new CellNotEmptyException();
-		}
-
+		x = sc.nextInt()-1;
+		y = sc.nextInt()-1;
+		sc.close();
 		return (new int[] {x, y});
 	}
 

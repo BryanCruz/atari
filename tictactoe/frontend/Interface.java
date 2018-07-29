@@ -4,6 +4,7 @@ import java.util.Scanner;
 import tictactoe.elements.Board;
 import tictactoe.elements.Player;
 import tictactoe.elements.Human;
+import tictactoe.elements.IA;
 
 public abstract class Interface {
 
@@ -19,11 +20,22 @@ public abstract class Interface {
 		System.out.println();
 	}
 
-	//informa qual é o jogador atual
-	public static void playScreen(Player player){
-		System.out.print("Player " + player.getNumber() + " turn");
-		if(player instanceof Human) System.out.print(", choose a cell: ");
-		else 						System.out.println();
+	// faz a jogada do humano
+	public static int[] playScreen(Board board, Player player){
+		System.out.print(player.getName() + "'s turn, choose a cell: ");
+		int chosenCells[] = {-1, -1};
+
+		do{
+			Scanner scan = new Scanner(System.in);
+			try{
+				chosenCells = player.chooseCell(board);
+			}
+			catch(java.util.InputMismatchException e){
+				chosenCells[0] = chosenCells[0] = -1;
+				System.out.println("Something went wrong: Only numbers are allowed here");
+				System.out.print("Choose a cell: ");
+			}
+		}while(chosenCells[0] < 0 || chosenCells[1] < 0);
 	}
 
 	//imprime a primeira tela do programa

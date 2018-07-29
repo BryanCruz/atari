@@ -42,22 +42,10 @@ public class Game {
 		Interface.printBoard(board);
 		while(!Engine.checkGameOver(board)) {
 			// the actual player chooses a cell to play
-			int x, y;
-			do{
-				try{
-					Interface.playScreen(players[actualPlayer]);
-					int[] playedCells = players[actualPlayer].chooseCell(board);
-					x = playedCells[0]-1;
-					y = playedCells[1]-1;
-				}
-				catch(Exception e){
-					x = y = -1;
-					System.out.println(e.getMessage());
-				}
-			}while(x < 0 || x >= boardSize || y < 0 || y >= boardSize || !Engine.checkEmptyCell(board, x, y));
+			int chosenCells[] = Interface.playScreen(board, players[actualPlayer]);
 
 			// the engine fills that cell
-			Engine.play(board, players[actualPlayer], x, y);
+			Engine.play(board, players[actualPlayer], chosenCells[0], chosenCells[1]);
 			Interface.printBoard(board);
 			actualPlayer ^= 1;
 		}
