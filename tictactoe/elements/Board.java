@@ -1,27 +1,33 @@
 package tictactoe.elements;
 
 public class Board {
-	private char[][] cells;
+	private Cell[][] board;
 
 	public Board(int boardSize) {
-		this.setCells(new char[boardSize][boardSize]);
+		this.setBoard(new Cell[boardSize][boardSize]);
 	}
 
-	private char[][] getCells() {
-		return this.cells;
-	}
-	private void setCells(char[][] cells) {
-		this.cells = cells;
+	//Returns the board
+	private Cell[][] getBoard() {
+		return this.board;
 	}
 
-	public char getCell(int i, int j) {
-		return this.getCells()[i][j];
-	}
-	public void setCell(int i, int j, char c) {
-		this.getCells()[i][j] = c;
+	//Sets the board
+	private void setBoard(Cell[][] board) {
+		this.board = board;
 	}
 
+	//returns a cell from the board
+	public Cell getCell(int i, int j) {
+		return this.board[i][j];
+	}
+
+	public void setCell(int i, int j, Cell cell) {
+		this.board[i][j] = cell;
+	}
+
+	//Returns the board size(number of elements, N, in a board NxN)
 	public int getBoardSize() {
-		return this.getCells().length;
+		return this.getBoard().length;
 	}
 }
