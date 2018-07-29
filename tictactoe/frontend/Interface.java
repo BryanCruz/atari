@@ -1,6 +1,8 @@
 package tictactoe.frontend;
 
 import java.util.Scanner;
+
+import tictactoe.backend.Engine;
 import tictactoe.elements.Board;
 import tictactoe.elements.Player;
 import tictactoe.elements.Human;
@@ -26,14 +28,17 @@ public abstract class Interface {
 		int chosenCells[] = {-1, -1};
 
 		do{
-			Scanner scan = new Scanner(System.in);
 			try{
 				chosenCells = player.chooseCell(board);
+
+				if(!Engine.checkEmptyCell(board, chosenCells[0], chosenCells[1])){
+					throw new Exception("This cell is not empty");
+				}
 			}
-			catch(java.util.InputMismatchException e){
+			catch(Exception e){
 				chosenCells[0] = chosenCells[0] = -1;
-				System.out.println("Something went wrong: Only numbers are allowed here");
-				System.out.print("Choose a cell: ");
+				System.out.println("Something went wrong: " + e.getMessage());
+				System.out.print("Choose a new cell: ");
 			}
 		}while(chosenCells[0] < 0 || chosenCells[1] < 0);
 
@@ -97,7 +102,8 @@ public abstract class Interface {
 	}
 
 	public String readString(){
-		return input.nextLine();
+		String read = input.nextLine();
+		return read;
 	}
 
 	public boolean readChar(){
