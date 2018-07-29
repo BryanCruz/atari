@@ -19,7 +19,7 @@ public class IA implements Player{
 		random = new Random();
 	}
 
-	@Override 
+	@Override
 	public String getName(){
 		return "Computer";
 	}
@@ -66,14 +66,13 @@ public class IA implements Player{
 		//check the board for empty cells
 		for (int i = 0; i < board.getBoardSize(); i++) {
 			for (int j = 0; j < board.getBoardSize(); j++) {
-
 				// Player is opponent(Human), need to minimize
 				if (currentPlayer instanceof Human) {
 					bestScore = 999999;
 
 					// If cell's empty
 					if (Engine.checkEmptyCell(board, i, j)) {
-						Engine.play(board, currentPlayer, i, j);
+						Engine.play(board, currentPlayer, new int[] {i, j});
 
 						score = makeStrategicChoice(board, difficulty - 1, opponent, currentPlayer)[2];
 
@@ -86,12 +85,13 @@ public class IA implements Player{
 					}
 
 				//Player is AI, need to maximize
-				} else {
+				}
+				else {
 					bestScore = -9999999;
 
 					// If cell's empty
 					if (Engine.checkEmptyCell(board, i, j)) {
-						Engine.play(board, currentPlayer, i, j);
+						Engine.play(board, currentPlayer, new int[] {i, j});
 
 						score = makeStrategicChoice(board, difficulty - 1, opponent, currentPlayer)[2];
 
