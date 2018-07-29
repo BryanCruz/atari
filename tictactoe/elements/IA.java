@@ -44,10 +44,10 @@ public class IA implements Player{
 		int bestScore = 0;
 		int row = -1;
 		int column = -1;
-		int score;
+		score = Engine.checkWin(board);
 
 		//base case
-		if (Engine.checkFullBoard(board) || difficulty == 0 || Engine.checkWin(board) != 0 ) {
+		if (Engine.checkFullBoard(board) || difficulty == 0 || score != 0 ) {
 			switch (score) {
 				//player1(Human) won
 				case 1:
@@ -85,8 +85,7 @@ public class IA implements Player{
 					}
 
 				//Player is AI, need to maximize
-				}
-				else {
+				} else {
 					bestScore = -9999999;
 
 					// If cell's empty
