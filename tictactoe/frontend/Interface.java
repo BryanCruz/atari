@@ -1,10 +1,13 @@
 package tictactoe.frontend;
 
+import java.util.Scanner;
 import tictactoe.elements.Board;
 import tictactoe.elements.Player;
 import tictactoe.elements.Human;
 
 public abstract class Interface {
+
+	Scanner input = new Scanner(System.in);
 
 	//imprime o tabuleiro no console limpando a tela
 	public static void printBoard(Board board) {
@@ -56,26 +59,41 @@ public abstract class Interface {
 
 	public static void endScreen(){
 		System.out.println("Game Over!");
-		System.out.println();		
+		System.out.println();
 		System.out.println("1 - Restart game (Don't change options)");
 		System.out.println("2 - Restart game (Change options)");
 		System.out.println("3 - Exit Game");
 	}
-	
+
 	//imprime a interface para insercão dos nomes
-	public static void nameScreen(int playerNumber) { 		
+	public static void nameScreen(int playerNumber) {
 		System.out.print("Insert player " + playerNumber + " name: ");
 	}
-	
+
 	public static void tutorialSelectScreen() {
 		System.out.println("\nPress Y/y or Enter key to show a tutorial on how to select cells");
-		System.out.println("Press any other key to skip"); 
+		System.out.println("Press any other key to skip");
 	}
-	
+
 	public static void tutorialScreen(int boardSize) {
 		System.out.println("\nHow to play:");
 		System.out.println("The board is a matrix of " + boardSize + "x" + boardSize + " elements.");
 		System.out.println("When asked to choose a cell, type with spaces the indexes of the cell you want.");
 		System.out.println("Example: 1 2, puts your draw (X or O) in the cell at the first line and second column of the matrix.\n");
+	}
+
+	public String readString(){
+		return input.nextLine();
+	}
+
+	public boolean readChar(){
+		String key = readString();
+		if(key.equals("Y") || key.equals("y") || key.equals(" ")){
+			return true;
+		}
+		else{
+			return false;
+		}
+
 	}
 }
