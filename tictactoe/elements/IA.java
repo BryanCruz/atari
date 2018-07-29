@@ -19,6 +19,11 @@ public class IA implements Player{
 		random = new Random();
 	}
 
+	@Override 
+	public String getName(){
+		return "Computer";
+	}
+
 	@Override
 	public int[] chooseCell(Board board) {
 		return makeChoice(board);
