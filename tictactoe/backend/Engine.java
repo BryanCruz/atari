@@ -4,10 +4,10 @@ import tictactoe.elements.*;
 
 public abstract class Engine {
 
-  
+
   //set the values of each type of cell
   private static final char emptySymbol   = '-';
-  
+
   // clear the board for a new game
   public static void clearBoard(Board board) {
     int size = board.getBoardSize();
@@ -19,15 +19,20 @@ public abstract class Engine {
   }
 
   // make a play, i.e, defines a value for a cell in the board
-  public static void play(Board board, Player player, int i, int j) {
-    Cell tmp = board.getCell(i,j);
+  public static void play(Board board, Player player, int[] pos) {
+    Cell tmp = board.getCell(pos[0], pos[1]);
     tmp.setSymbol(player.getSymbol());
-    
+
     if (player.getNumber() == 1) {
       tmp.setValue(1);
     } else {
       tmp.setValue(-1);
     }
+  }
+
+  //set a empty cell
+  public static void setEmptyCell(Board board, int i, int j) {
+    board.getCell(i, j).setSymbol(emptySymbol);
   }
 
   // checks if the cell has already been played
@@ -81,7 +86,7 @@ public abstract class Engine {
     int boardSize = board.getBoardSize();
     for(int i = 0; i < boardSize; i++){
       for(int j = 0; j < boardSize; j++){
-        if(Engine.checkEmptyCell(board, i, j)) 
+        if(Engine.checkEmptyCell(board, i, j))
           return false;
       }
     }
