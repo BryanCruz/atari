@@ -35,7 +35,7 @@ public class IA implements Player{
 			x = Math.abs(random.nextInt()) % board.getBoardSize();
 			y = Math.abs(random.nextInt()) % board.getBoardSize();
 		} while (!Engine.checkEmptyCell(board, x, y));
-		return (new int[] {x+1, y+1});
+		return (new int[] {x, y});
 	}
 
 
