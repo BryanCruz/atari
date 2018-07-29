@@ -36,6 +36,8 @@ public abstract class Interface {
 				System.out.print("Choose a cell: ");
 			}
 		}while(chosenCells[0] < 0 || chosenCells[1] < 0);
+
+		return chosenCells;
 	}
 
 	//imprime a primeira tela do programa

@@ -45,7 +45,7 @@ public class Game {
 			int chosenCells[] = Interface.playScreen(board, players[actualPlayer]);
 
 			// the engine fills that cell
-			Engine.play(board, players[actualPlayer], chosenCells[0], chosenCells[1]);
+			Engine.play(board, players[actualPlayer], chosenCells);
 			Interface.printBoard(board);
 			actualPlayer ^= 1;
 		}
