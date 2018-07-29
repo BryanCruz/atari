@@ -45,6 +45,7 @@ public abstract class Interface {
 			}
 		}while(chosenCells[0] < 0 || chosenCells[1] < 0);
 
+		if(player instanceof IA) System.out.println(chosenCells[0] + " " + chosenCells[1]);
 		return chosenCells;
 	}
 
