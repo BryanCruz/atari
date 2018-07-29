@@ -31,14 +31,17 @@ public abstract class Interface {
 			try{
 				chosenCells = player.chooseCell(board);
 
-				if(!Engine.checkEmptyCell(board, chosenCells[0], chosenCells[1])){
+				if(chosenCells[0] < 0 || chosenCells[1] < 0 || chosenCells[0] >= board.getBoardSize() || chosenCells[1] >= board.getBoardSize()){
+					throw new Exception("This is not a valid cell");
+				}
+				else if(!Engine.checkEmptyCell(board, chosenCells[0], chosenCells[1])){
 					throw new Exception("This cell is not empty");
 				}
 			}
 			catch(Exception e){
 				chosenCells[0] = chosenCells[0] = -1;
 				System.out.println("Something went wrong: " + e.getMessage());
-				System.out.print("Choose a new cell: ");
+				System.out.print(player.getName() + ", choose a new cell: ");
 			}
 		}while(chosenCells[0] < 0 || chosenCells[1] < 0);
 
