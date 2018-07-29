@@ -43,30 +43,16 @@ public class Human implements Player {
 		Return a vector with the position of the cell (x,y)	
 	*/
 	@Override
-	public int[] chooseCell(Board board) {
+	public int[] chooseCell(Board board) throws java.util.InputMismatchException, CellNotEmptyException, CellsOutOfRangeException{
 		Scanner sc = new Scanner(System.in);
 		int x, y;
-		try{
-			x = sc.nextInt();
-			y = sc.nextInt();
+		x = sc.nextInt();
+		y = sc.nextInt();
 
-			if(x < 1 || x > board.getBoardSize() || y < 1 || y > board.getBoardSize()){
-				throw new CellsOutOfRangeException();
-			}else if(!Engine.checkEmptyCell(board, x, y)){
-				throw new CellNotEmptyException();
-			}
-		}
-		catch(InputMismatchException e){
-			System.out.println("Only numbers are allowed here");
-			return (new int[] {-1, -1});
-		}
-		catch(CellsOutOfRangeException e){
-			System.out.println("This cell doesn't exist in the board");
-			return (new int[] {-1, -1});
-		}
-		catch(CellNotEmptyException e){
-			System.out.println("This cell has already been played");
-			return (new int[] {-1, -1});
+		if(x < 1 || x > board.getBoardSize() || y < 1 || y > board.getBoardSize()){
+			throw new CellsOutOfRangeException();
+		}else if(!Engine.checkEmptyCell(board, x, y)){
+			throw new CellNotEmptyException();
 		}
 
 		return (new int[] {x, y});
