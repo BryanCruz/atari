@@ -87,7 +87,7 @@ public class IA implements Player{
 				//Player is AI, need to maximize
 				}
 				else {
-					bestScore = -9999999;
+					bestScore = Integer.MIN_VALUE;
 
 					// If cell's empty
 					if (Engine.checkEmptyCell(board, i, j)) {
