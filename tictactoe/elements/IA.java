@@ -4,7 +4,7 @@ import tictactoe.elements.Board;
 import tictactoe.backend.Engine;
 import java.util.Random;
 
-public class IA implements Player {
+public class IA implements Player{
 
 	//private Board board;
 	private int difficulty;
@@ -33,15 +33,76 @@ public class IA implements Player {
 		return (new int[] {x+1, y+1});
 	}
 
-	/*
-	public int[] makeStrategicChoice(Board board) {
-		int x, y;
-			Engine.checkPossibleWin();
-		
-	
-	 	return new int[] {x, y};
-	 }
-	 */
+
+	//Recursive algorithm that utilizes minMax strategy
+	public int[] makeStrategicChoice(Board board, int difficulty, Player currentPlayer, Player oppenent) {
+		int bestScore = 0;
+		int row = -1;
+		int collum = -1;
+		int score;
+
+		//base case
+		if (Engine.checkFullBoard(board) || difficulty == 0 || Engine.checkWin(board) != 0 ) {
+			switch (score) {
+				//player1(Human) won
+				case 1:
+					bestScore = -1;
+					break;
+				//player2(AI) won
+				case 2:
+					bestScore = 1;
+				//Tie
+				default:
+					bestScore = 0;
+					break;
+			}
+		}
+
+		//check the board for empty cells
+		for (int i = 0; i < board.getBoardSize(); i++) {
+			for (int j = 0; j < board.getBoardSize(); j++) {
+
+				// Player is opponent, need to minimize
+				if (currentPlayer instanceof Human) {
+					bestScore = 999999;
+
+					// If cell's empty
+					if (Engine.checkEmptyCell(board, i, j)) {
+						Engine.play(board, currentPlayer, i, j);
+
+						score = makeStrategicChoice(board, difficulty - 1, oppenent, currentPlayer)[0];
+
+						//If the score of this play is lower than the best score we update
+						if (score < bestScore) {
+							bestScore = score;
+							row = i;
+							collum = j;
+						}
+					}
+
+				//Player is human, need to maximize
+				} else {
+					bestScore = -9999999;
+
+					// If cell's empty
+					if (Engine.checkEmptyCell(board, i, j)) {
+						Engine.play(board, currentPlayer, i, j);
+
+						score = makeStrategicChoice(board, difficulty - 1, oppenent, currentPlayer)[0];
+
+						//If the score of this play is lower than the best score we update
+						if (score > bestScore) {
+							bestScore = score;
+							row = i;
+							collum = j;
+						}
+					}
+				}
+			}
+		}
+
+		return new int[] {bestScore, row, collum};
+	}
 
 	@Override
 	public void setNumber(int number) {
