@@ -10,7 +10,7 @@ class Main {
 		Scanner sc = new Scanner(System.in);
 
 		while(restartOption != 3){
-			if(restartOption == 2){	
+			if(restartOption == 2){
 				boardSize = 3;
 
 				// checks if it is a multiplayer game
@@ -22,8 +22,6 @@ class Main {
 				else {
 					// if it isn't, the player chooses a difficulty to play
 					Interface.difficultyScreen();
-					difficulty = sc.nextInt();
-					sc.nextLine();
 				}
 			}
 
