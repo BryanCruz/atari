@@ -51,7 +51,7 @@ public abstract class Interface {
 			}
 		}while(chosenCells[0] < 0 || chosenCells[1] < 0);
 
-		if(player instanceof IA) System.out.println(chosenCells[0] + " " + chosenCells[1]);
+		if(player instanceof IA) System.out.println((chosenCells[0] + 1) + " " + (chosenCells[1] + 1));
 		return chosenCells;
 	}
 
@@ -93,7 +93,7 @@ public abstract class Interface {
 		else {
 			Player winnerPlayer = winner == 1 ? player1 : player2;
 			Player loserPlayer  = winner == 1 ? player2 : player1;
-			
+
 			if (winnerPlayer instanceof Human) {
 				if(loserPlayer instanceof Human)
 					Interface.winnerScreen(winnerPlayer.getName());
