@@ -15,8 +15,8 @@ public abstract class Interface {
 
 	//imprime o tabuleiro no console limpando a tela
 	public static void printBoard(Board board) {
-		for (int i = 0; i < 3; i++) {
-			for (int j = 0; j < 3; j++) {
+		for (int i = 0; i < board.getBoardSize(); i++) {
+			for (int j = 0; j < board.getBoardSize(); j++) {
 				System.out.printf(" %c %c", board.getCell(i, j).getSymbol(), (j == board.getBoardSize()-1 ? '\n' : '|'));
 			}
 		}
