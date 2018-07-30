@@ -52,7 +52,6 @@ public abstract class UserInput{
 		return UserInput.readIntOption(minOption, maxOption, "option");
 	}
 
-
 	public static String readString(){
 		String read = input.nextLine();
 		return read;

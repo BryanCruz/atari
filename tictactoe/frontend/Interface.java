@@ -2,6 +2,8 @@ package tictactoe.frontend;
 
 import tictactoe.backend.Engine;
 import tictactoe.elements.*;
+import tictactoe.exceptions.InvalidCellException;
+import tictactoe.exceptions.UserInputException;
 import tictactoe.frontend.UserInput;
 import java.util.InputMismatchException;
 
@@ -20,30 +22,29 @@ public abstract class Interface {
 	// faz a jogada do humano
 	public static int[] playScreen(Board board, Player player){
 		System.out.print(player.getName() + "'s turn, choose a cell: ");
-		int chosenCells[] = {-1, -1};
+		int chosenCells[] = new int[] {-1, -1};
 
-		do{
+		while(chosenCells[0] < 0 || chosenCells[1] < 0){
 			try{
-				chosenCells = player.chooseCell(board);
+				try{
+					chosenCells = player.chooseCell(board);
+				}
+				catch(InputMismatchException e){
+					throw new InvalidCellException("Only numbers are allowed here");
+				}
 
 				if(chosenCells[0] < 0 || chosenCells[1] < 0 || chosenCells[0] >= board.getBoardSize() || chosenCells[1] >= board.getBoardSize()){
-					throw new Exception("This is not a valid cell");
+					throw new InvalidCellException("This cell doesn't exist");
 				}
 				else if(!Engine.checkEmptyCell(board.getCell(chosenCells[0], chosenCells[1]))){
-					throw new Exception("This cell is not empty");
+					throw new InvalidCellException("This cell is not empty");
 				}
 			}
-			catch(InputMismatchException e){
+			catch(InvalidCellException e){
 				chosenCells[0] = chosenCells[0] = -1;
-				System.out.println("Something went wrong: Only numbers are allowed here");
-				System.out.print(player.getName() + ", choose a new cell: ");
+				System.out.print(e.getMessage());
 			}
-			catch(Exception e){
-				chosenCells[0] = chosenCells[0] = -1;
-				System.out.println("Something went wrong: " + e.getMessage());
-				System.out.print(player.getName() + ", choose a new cell: ");
-			}
-		}while(chosenCells[0] < 0 || chosenCells[1] < 0);
+		}
 
 		if(player instanceof IA) System.out.println((chosenCells[0] + 1) + " " + (chosenCells[1] + 1));
 		return chosenCells;

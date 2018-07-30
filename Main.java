@@ -11,7 +11,7 @@ class Main {
 
 		while(restartOption != 3){
 			if(restartOption == 2){
-				boardSize = 5;
+				boardSize = 3;
 
 				// checks if it is a multiplayer game
 				boolean multiplayer = Interface.firstScreen();
