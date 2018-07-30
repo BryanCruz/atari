@@ -1,5 +1,6 @@
 package tictactoe.frontend;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import tictactoe.backend.Engine;
@@ -37,6 +38,11 @@ public abstract class Interface {
 				else if(!Engine.checkEmptyCell(board, chosenCells[0], chosenCells[1])){
 					throw new Exception("This cell is not empty");
 				}
+			}
+			catch(InputMismatchException e){
+				chosenCells[0] = chosenCells[0] = -1;
+				System.out.println("Something went wrong: Only numbers are allowed here");
+				System.out.print(player.getName() + ", choose a new cell: ");
 			}
 			catch(Exception e){
 				chosenCells[0] = chosenCells[0] = -1;
