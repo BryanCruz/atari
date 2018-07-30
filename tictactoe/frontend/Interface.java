@@ -80,6 +80,26 @@ public abstract class Interface {
 		System.out.println("You LOSE");
 	}
 
+	public static void finalScreen(int winner, Player player1, Player player2){
+		if (winner == 0) {
+			Interface.tieScreen();
+		}
+		else {
+			Player winnerPlayer = winner == 1 ? player1 : player2;
+			Player loserPlayer  = winner == 1 ? player2 : player1;
+			
+			if (winnerPlayer instanceof Human) {
+				if(loserPlayer instanceof Human)
+					Interface.winnerScreen(winnerPlayer.getName());
+				else
+					Interface.winnerScreen("YOU");
+			}
+			else {
+				Interface.loserScreen();
+			}
+		}
+	}
+
 	public static void endScreen(){
 		System.out.println("Game Over!");
 		System.out.println();
