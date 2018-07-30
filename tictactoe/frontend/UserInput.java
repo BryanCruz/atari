@@ -7,13 +7,11 @@ import tictactoe.exceptions.UserInputException;
 public abstract class UserInput{
 	private static Scanner input = new Scanner(System.in);
 
-	// read n integer inputs in a line
-	public static int[] readInt(int n) throws UserInputException{
-		int[] numbersRead = new int[n];
+	// read a integer in a line
+	public static int readInt() throws UserInputException{
+		int n = -1;
 		try{
-			for(int i = 0; i < n; i++){
-				numbersRead[i] = input.nextInt();
-			}
+			n = input.nextInt();
 		}
 		catch(InputMismatchException e){
 			throw new UserInputException("Only numbers are allowed here");
@@ -21,13 +19,7 @@ public abstract class UserInput{
 		finally{
 			input.nextLine();
 		}
-		return numbersRead;
-	}
-
-	// read a integer in a line
-	public static int readInt() throws UserInputException{
-		int[] numberRead = UserInput.readInt(1);
-		return numberRead[0];
+		return n;
 	}
 
 	public static int readIntOption(int minOption, int maxOption, String optionName){
