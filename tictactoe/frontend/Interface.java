@@ -1,17 +1,11 @@
 package tictactoe.frontend;
 
-import java.util.InputMismatchException;
-import java.util.Scanner;
-
 import tictactoe.backend.Engine;
-import tictactoe.elements.Board;
-import tictactoe.elements.Player;
-import tictactoe.elements.Human;
-import tictactoe.elements.IA;
+import tictactoe.elements.*;
+import tictactoe.frontend.UserInput;
+import java.util.InputMismatchException;
 
 public abstract class Interface {
-
-	private static Scanner input = new Scanner(System.in);
 
 	//imprime o tabuleiro no console limpando a tela
 	public static void printBoard(Board board) {
@@ -62,7 +56,7 @@ public abstract class Interface {
 		System.out.println("1 - Player vs Player");
 		System.out.println("2 - Player vs IA");
 
-		int option = Interface.readIntOption(1, 2);
+		int option = UserInput.readIntOption(1, 2);
 		boolean multiplayer = option == 1;
 		return multiplayer;
 	}
@@ -75,7 +69,7 @@ public abstract class Interface {
 		System.out.println("2 - Normal");
 		System.out.println("3 - Hard");
 
-		int option = Interface.readIntOption(1, 3);
+		int option = UserInput.readIntOption(1, 3);
 		return option;
 	}
 
@@ -121,7 +115,7 @@ public abstract class Interface {
 		System.out.println("2 - Restart game (Change options)");
 		System.out.println("3 - Exit Game");
 
-		int option = Interface.readIntOption(1, 3);
+		int option = UserInput.readIntOption(1, 3);
 		return option;
 	}
 
@@ -134,7 +128,7 @@ public abstract class Interface {
 		System.out.println("\nPress Y/y to show a tutorial on how to select cells");
 		System.out.println("Press any other key to skip");
 
-		String tutorialOption = Interface.readString();
+		String tutorialOption = UserInput.readString();
 		boolean showTutorial = !tutorialOption.isEmpty() && (tutorialOption.charAt(0) == 'y' || tutorialOption.charAt(0) == 'Y');
 
 		return showTutorial;
@@ -147,41 +141,4 @@ public abstract class Interface {
 		System.out.println("Example: 1 2, puts your draw (X or O) in the cell at the first line and second column of the matrix.\n");
 	}
 
-	public static int readInt() throws Exception{
-		int n;
-		try{
-			n = input.nextInt();
-		}
-		catch(InputMismatchException e){
-			throw new Exception("Only numbers are allowed here");
-		}
-		finally{
-			input.nextLine();
-		}
-		return n;
-	}
-
-	public static String readString(){
-		String read = input.nextLine();
-		return read;
-	}
-
-	public static int readIntOption(int minOption, int maxOption){
-		int option = -1;
-		while(option < 0){
-			try {
-				option = Interface.readInt();
-
-				if (option < minOption || option > maxOption){
-					throw new Exception("That's not a valid option");
-				}
-			}
-			catch (Exception e) {
-				option = -1;
-				System.out.println("Something went wrong: " + e.getMessage());
-				System.out.print("Choose a new option: ");
-			}
-		}
-		return option;
-	}
 }
