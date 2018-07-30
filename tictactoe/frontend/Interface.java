@@ -9,6 +9,14 @@ import java.util.InputMismatchException;
 
 public abstract class Interface {
 
+	// print a line to make visualization cleaner
+	public static void printDashLine(){
+		for(int i = 0; i < 33; i++){
+			System.out.print("=");
+		}
+		System.out.println();
+	}
+
 	//imprime o tabuleiro no console limpando a tela
 	public static void printBoard(Board board) {
 		for (int i = 0; i < board.getBoardSize(); i++) {
@@ -47,11 +55,16 @@ public abstract class Interface {
 		}
 
 		if(player instanceof IA) System.out.println((chosenCells[0] + 1) + " " + (chosenCells[1] + 1));
+
+		Interface.printDashLine();
+
 		return chosenCells;
 	}
 
 	//imprime a primeira tela do programa e retorna a escolha do jogador
 	public static boolean firstScreen() {
+		Interface.printDashLine();
+
 		System.out.println("\nTic Tac Toe\n");
 		System.out.println("Choose game mode:");
 		System.out.println("1 - Player vs Player");
@@ -59,18 +72,24 @@ public abstract class Interface {
 
 		int option = UserInput.readIntOption(1, 2);
 		boolean multiplayer = option == 1;
-		return multiplayer;
-	}
 
+		Interface.printDashLine();
+
+		return multiplayer;
+		
+	}
+	
 	//imprime a segunda tela do programa e retorna a escolha do jogador
 	public static int difficultyScreen() {
-
 		System.out.println("\nChoose IA difficulty:");
 		System.out.println("1 - Easy");
 		System.out.println("2 - Normal");
 		System.out.println("3 - Hard");
 
 		int option = UserInput.readIntOption(1, 3, "difficulty");
+
+		Interface.printDashLine();
+
 		return option;
 	}
 
@@ -108,6 +127,8 @@ public abstract class Interface {
 				Interface.loserScreen();
 			}
 		}
+
+		Interface.printDashLine();
 	}
 
 	// imprime a tela de reiniciar o jogo e retorna a escolha do jogador
@@ -119,6 +140,9 @@ public abstract class Interface {
 		System.out.println("3 - Exit Game");
 
 		int option = UserInput.readIntOption(1, 3);
+
+		Interface.printDashLine();
+
 		return option;
 	}
 
@@ -129,6 +153,8 @@ public abstract class Interface {
 		while(name.isEmpty()){
 			name = UserInput.readString();
 		}
+
+		Interface.printDashLine();
 
 		return name;
 	}
@@ -144,6 +170,9 @@ public abstract class Interface {
 		if(showTutorial){
 			Interface.tutorialScreen(boardSize);
 		}
+
+		Interface.printDashLine();
+
 	}
 
 	// imprime o tutorial
