@@ -73,21 +73,21 @@ public abstract class Interface {
 		System.out.println("1 - Easy");
 		System.out.println("2 - Normal");
 		System.out.println("3 - Hard");
+		int num = -1;
 		do {
 			try {
-				int num = readInt();
-
+				num = readInt();
 				if (num > 3 || num < 1)
 					throw new Exception("That's not a valid difficulty");
 
 			} catch (InputMismatchException e) {
 				System.out.println("Something went wrong: Only numbers are allowed here");
-				System.out.print("Choose ");
+				System.out.print("Choose a new difficulty: ");
 			} catch (Exception e) {
 				System.out.println("Something went wrong:" + e.getMessage());
 				System.out.print( "Choose a new difficulty: ");
 			}
-		} while (num <= 3 && num >= 1);
+		} while (num > 3 || num < 1);
 
 		return num;
 	}
