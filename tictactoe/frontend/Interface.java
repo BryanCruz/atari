@@ -161,8 +161,14 @@ public abstract class Interface {
 	}
 
 	public static int readInt(){
-		int n = input.nextInt();
-		input.nextLine();
+		int n;
+		try{
+			n = input.nextInt();
+			input.nextLine();
+		}
+		catch(InputMismatchException e){
+			throw new Exception("Only numbers are allowed here");
+		}
 		return n;
 	}
 
