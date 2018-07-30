@@ -62,21 +62,20 @@ public abstract class Interface {
 	}
 
 	//imprime a primeira tela do programa e retorna a escolha do jogador
-	public static boolean firstScreen() {
+	public static int firstScreen() {
 		Interface.printDashLine();
 
 		System.out.println("\nTic Tac Toe\n");
 		System.out.println("Choose game mode:");
 		System.out.println("1 - Player vs Player");
-		System.out.println("2 - Player vs IA");
+		System.out.println("2 - Player vs Computer");
+		System.out.println("3 - Computer vs Computer");
 
-		int option = UserInput.readIntOption(1, 2);
-		boolean multiplayer = option == 1;
+		int option = UserInput.readIntOption(1, 3);
 
 		Interface.printDashLine();
 
-		return multiplayer;
-		
+		return option;
 	}
 	
 	//imprime a segunda tela do programa e retorna a escolha do jogador

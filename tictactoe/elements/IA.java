@@ -19,7 +19,7 @@ public class IA implements Player{
 
 	@Override
 	public String getName(){
-		return "Computer";
+		return "Computer " + this.getNumber();
 	}
 
 	@Override
