@@ -15,6 +15,7 @@ public abstract class Engine {
 
   // make a play, i.e, defines a value for a cell in the board
   public static void play(Board board, Player player, int[] pos) {
+    Cell tmp = board.getCell(pos[0], pos[1]);
     if (player.getNumber() == 1) {
       tmp.setValue(1);
     } else {
@@ -24,7 +25,7 @@ public abstract class Engine {
 
   //set a empty cell
   public static void setEmptyCell(Board board, int i, int j) {
-    board.getCell(i, j).setSymbol(emptySymbol);
+    board.getCell(i, j).setValue(0);
   }
 
   // checks if the cell has already been played
