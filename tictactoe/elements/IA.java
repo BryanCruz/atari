@@ -67,6 +67,7 @@ public class IA implements Player{
 				//player2(AI) won
 				case 2:
 					bestScore = 1;
+					break;
 				//Tie
 				default:
 					bestScore = 0;
