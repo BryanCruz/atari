@@ -6,15 +6,13 @@ import tictactoe.backend.Engine;
 public class Human implements Player {
 	private String name;
 	private int number;
-	private char symbol;
 
 	/*	Overload constructor
 		Parameters : name and number of the player
 	*/
-	public Human(String name, int number, char symbol) {
+	public Human(String name, int number) {
 		this.setName(name);
 		this.setNumber(number);
-		this.setSymbol(symbol);
 	}
 
 	//Return user's username
@@ -52,13 +50,4 @@ public class Human implements Player {
 		return (new int[] {x, y});
 	}
 
-	@Override
-	public void setSymbol(char symbol) {
-		this.symbol = symbol;
-	}
-
-	@Override
-	public char getSymbol() {
-		return this.symbol;
-	}
 }

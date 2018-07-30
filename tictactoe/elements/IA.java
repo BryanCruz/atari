@@ -9,13 +9,11 @@ public class IA implements Player{
 	//private Board board;
 	private int difficulty;
 	private int number;
-	private char symbol;
 	private Random random;
 
-	public IA(int difficulty, int number, char symbol) {
+	public IA(int difficulty, int number) {
 		this.setDifficulty(difficulty);
 		this.setNumber(number);
-		this.setSymbol(symbol);
 		random = new Random();
 	}
 
@@ -127,15 +125,5 @@ public class IA implements Player{
 	}
 	public int getDifficulty() {
 		return this.difficulty;
-	}
-
-	@Override
-	public void setSymbol(char symbol) {
-		this.symbol = symbol;
-	}
-
-	@Override
-	public char getSymbol() {
-		return this.symbol;
 	}
 }

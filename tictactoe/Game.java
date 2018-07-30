@@ -16,16 +16,16 @@ public class Game {
 		// create player 1
 		Interface.nameScreen(1);
 
-		players[0] = new Human(scanner.nextLine(), 1, 'X');
+		players[0] = new Human(scanner.nextLine(), 1);
 
 		// create player 2
 		if (difficulty == 0) {
 			//If it's multiplayer, instatiates a new Human
 			Interface.nameScreen(2);
-			players[1] = new Human(scanner.nextLine(), 2, 'O');
+			players[1] = new Human(scanner.nextLine(), 2);
 		} else {
 			//If it's singleplayer, instatiates an IA
-			players[1] = new IA(difficulty, 2, 'O');
+			players[1] = new IA(difficulty, 2);
 		}
 
 		//prints a screen to select or skip the tutorial
