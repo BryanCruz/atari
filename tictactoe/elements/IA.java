@@ -25,7 +25,7 @@ public class IA implements Player{
 	@Override
 	public int[] chooseCell(Board board) {
 		Player humanTest = new Human("Test", 1);
-		return makeStrategicChoice(board, this.difficulty, this, humanTest);
+		return makeStrategicChoice(board, this.difficulty, true, this, humanTest);
 	}
 
 	public int[] makeChoice(Board board) {
@@ -39,7 +39,7 @@ public class IA implements Player{
 
 
 	//Recursive algorithm that utilizes minMax strategy
-	public int[] makeStrategicChoice(Board board, int difficulty, bool max, Player currentPlayer, Player opponent) {
+	public int[] makeStrategicChoice(Board board, int difficulty, boolean maximize, Player currentPlayer, Player opponent) {
 		int bestScore = 0;
 		int row = -1;
 		int column = -1;
@@ -63,48 +63,25 @@ public class IA implements Player{
 
 			return new int[] {row, column, bestScore};
 		}
-		bestScore = max ? Integer.MIN_VALUE : Integer.MAX_VALUE;
+
+		bestScore = maximize ? Integer.MIN_VALUE : Integer.MAX_VALUE;
 		//check the board for empty cells
 		for (int i = 0; i < board.getBoardSize(); i++) {
 			for (int j = 0; j < board.getBoardSize(); j++) {
-				// Player is opponent(Human), need to minimize
-				if (currentPlayer instanceof Human) {
-					// If cell's empty
-					if (Engine.checkEmptyCell(board, i, j)) {
-						Engine.play(board, currentPlayer, new int[] {i, j});
+				// If cell's empty
+				if (Engine.checkEmptyCell(board, i, j)) {
+					Engine.play(board, currentPlayer, new int[] {i, j});
 
-						score = makeStrategicChoice(board, difficulty - 1, !max, opponent, currentPlayer)[2];
+					score = makeStrategicChoice(board, difficulty - 1, !maximize, opponent, currentPlayer)[2];
 
-						//If the score of this play is lower than bestScore we update
-						if ((score < bestScore) ^ max) {
-							bestScore = score;
-							row = i;
-							column = j;
-						}
-						//Undo the play
-						Engine.setEmptyCell(board, i, j);
+					//If the score of this play is lower than bestScore we update
+					if ((score < bestScore) ^ maximize) {
+						bestScore = score;
+						row = i;
+						column = j;
 					}
-
-				//Player is AI, need to maximize
-				}
-				else {
-					bestScore = Integer.MIN_VALUE;
-
-					// If cell's empty
-					if (Engine.checkEmptyCell(board, i, j)) {
-						Engine.play(board, currentPlayer, new int[] {i, j});
-
-						score = makeStrategicChoice(board, difficulty - 1, opponent, currentPlayer)[2];
-
-						//If the score of this play is higher than bestScore, it updates
-						if (score > bestScore) {
-							bestScore = score;
-							row = i;
-							column = j;
-						}
-						//Undo the play
-						Engine.setEmptyCell(board, i, j);
-					}
+					//Undo the play
+					Engine.setEmptyCell(board, i, j);
 				}
 			}
 		}
