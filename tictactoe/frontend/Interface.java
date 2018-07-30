@@ -65,10 +65,28 @@ public abstract class Interface {
 
 	//imprime a segunda tela do programa
 	public static void difficultyScreen() {
+
 		System.out.println("\nChoose IA difficulty:");
 		System.out.println("1 - Easy");
 		System.out.println("2 - Normal");
 		System.out.println("3 - Hard");
+		do {
+			try {
+				int num = readInt();
+
+				if (num > 3 || num < 1)
+					throw new Exception("That's not a valid difficulty");
+
+			} catch (InputMismatchException e) {
+				System.out.println("Something went wrong: Only numbers are allowed here");
+				System.out.print("Choose ");
+			} catch (Exception e) {
+				System.out.println("Something went wrong:" + e.getMessage());
+				System.out.print( "Choose a new difficulty: ");
+			}
+		} while (num <= 3 && num >= 1);
+
+		return num;
 	}
 
 	//imprime a tela de vencedor
