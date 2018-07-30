@@ -51,21 +51,6 @@ public class Game {
 		}
 
 		int winner = Engine.checkWin(board);
-		if (winner == 0) {
-			Interface.tieScreen();
-		}
-		else {
-			Player winnerPlayer = players[winner-1];
-			Player loserPlayer  = players[2 - winner];
-			if (winnerPlayer instanceof Human) {
-				if(loserPlayer instanceof Human)
-					Interface.winnerScreen(((Human) winnerPlayer).getName());
-				else
-					Interface.winnerScreen("YOU");
-			}
-			else {
-				Interface.loserScreen();
-			}
-		}
+		Interface.finalScreen(winner, players[0], players[1]);
 	}
 }
