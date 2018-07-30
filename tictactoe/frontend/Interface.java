@@ -62,7 +62,18 @@ public abstract class Interface {
 		System.out.println("1 - Player vs Player");
 		System.out.println("2 - Player vs IA");
 
-		boolean multiplayer = Interface.readInt() == 1;
+		int option = -1;
+		while(option < 0){
+			try{
+				option = Interface.readInt();
+			}
+			catch(Exception e){
+				option = -1;
+				System.out.println("An error has ocurred: " + e.getMessage());
+				System.out.print("Choose a new option: ");
+			}
+		}
+		boolean multiplayer = option == 1;
 		return multiplayer;
 	}
 
@@ -73,9 +84,10 @@ public abstract class Interface {
 		System.out.println("1 - Easy");
 		System.out.println("2 - Normal");
 		System.out.println("3 - Hard");
+		int num = 32;
 		do {
 			try {
-				int num = readInt();
+				num = readInt();
 
 				if (num > 3 || num < 1)
 					throw new Exception("That's not a valid difficulty");
@@ -134,7 +146,17 @@ public abstract class Interface {
 		System.out.println("2 - Restart game (Change options)");
 		System.out.println("3 - Exit Game");
 
-		int option = Interface.readInt();
+		int option = -1;
+		while(option < 0){
+			try{
+				option = Interface.readInt();
+			}
+			catch(Exception e){
+				option = -1;
+				System.out.println("An error has ocurred: " + e.getMessage());
+				System.out.print("Choose a new option: ");
+			}
+		}
 		return option;
 	}
 
@@ -160,7 +182,7 @@ public abstract class Interface {
 		System.out.println("Example: 1 2, puts your draw (X or O) in the cell at the first line and second column of the matrix.\n");
 	}
 
-	public static int readInt(){
+	public static int readInt() throws Exception{
 		int n;
 		try{
 			n = input.nextInt();
