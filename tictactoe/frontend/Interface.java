@@ -135,7 +135,7 @@ public abstract class Interface {
 		System.out.println("Press any other key to skip");
 
 		String tutorialOption = Interface.readString();
-		boolean showTutorial = tutorialOption.charAt(0) == 'y' || tutorialOption.charAt(0) == 'Y';
+		boolean showTutorial = !tutorialOption.isEmpty() && (tutorialOption.charAt(0) == 'y' || tutorialOption.charAt(0) == 'Y');
 
 		return showTutorial;
 	}
