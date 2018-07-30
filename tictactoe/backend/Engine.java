@@ -24,7 +24,7 @@ public abstract class Engine {
 
   //set a empty cell
   public static void setEmptyCell(Board board, int i, int j) {
-    board.getCell(i, j).setSymbol(emptySymbol);
+    board.getCell(i, j).setValue(0);
   }
 
   // checks if the cell has already been played
