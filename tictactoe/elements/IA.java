@@ -35,7 +35,7 @@ public class IA implements Player{
 		if(this.getDifficulty() <= 1){
 			return makeChoice();
 		}else{
-			Player humanTest = new Human("Test", 1);
+			Player humanTest = new Human("Test", this.getNumber() == 1 ? 2 : 1);
 			return makeStrategicChoice(this.getDifficulty(), true, this, humanTest);
 		}
 	}
@@ -59,46 +59,42 @@ public class IA implements Player{
 
 		//base case
 		if (Engine.checkFullBoard() || difficulty == 0 || score != 0 ) {
-			switch (score) {
-				//player1(Human) won
-				case 1:
-					bestScore = -1;
-					break;
+			if (score == this.getNumber()) {
 				//player2(AI) won
-				case 2:
-					bestScore = 1;
-					break;
-				//Tie
-				default:
-					bestScore = 0;
-					break;
+				bestScore = 1;
 			}
-
-			return new int[] {row, column, bestScore};
+			else if (score == 0) {
+				//Tie
+				bestScore = 0;
+			}
+			else {
+				//player1(Human) won
+				bestScore = -1;
+			}
 		}
+		else {
+			bestScore = maximize ? Integer.MIN_VALUE : Integer.MAX_VALUE;
+			//check the board for empty cells
+			for (int i = 0; i < board.getBoardSize(); i++) {
+				for (int j = 0; j < board.getBoardSize(); j++) {
+					// If cell's empty
+					if (Engine.checkEmptyCell(board.getCell(i, j))) {
+						Engine.play(currentPlayer, new int[] {i, j});
 
-		bestScore = maximize ? Integer.MIN_VALUE : Integer.MAX_VALUE;
-		//check the board for empty cells
-		for (int i = 0; i < board.getBoardSize(); i++) {
-			for (int j = 0; j < board.getBoardSize(); j++) {
-				// If cell's empty
-				if (Engine.checkEmptyCell(board.getCell(i, j))) {
-					Engine.play(currentPlayer, new int[] {i, j});
+						score = makeStrategicChoice(difficulty - 1, !maximize, opponent, currentPlayer)[2];
 
-					score = makeStrategicChoice(difficulty - 1, !maximize, opponent, currentPlayer)[2];
-
-					//If the score of this play is lower than bestScore we update
-					if ((score < bestScore) ^ maximize) {
-						bestScore = score;
-						row = i;
-						column = j;
+						//If the score of this play is lower than bestScore we update
+						if ((score < bestScore) ^ maximize) {
+							bestScore = score;
+							row = i;
+							column = j;
+						}
+						//Undo the play
+						Engine.setEmptyCell(board.getCell(i, j));
 					}
-					//Undo the play
-					Engine.setEmptyCell(board.getCell(i, j));
 				}
 			}
 		}
-
 		return new int[] {row, column, bestScore};
 	}
 
