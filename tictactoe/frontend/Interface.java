@@ -11,7 +11,7 @@ import tictactoe.elements.IA;
 
 public abstract class Interface {
 
-	Scanner input = new Scanner(System.in);
+	private static Scanner input = new Scanner(System.in);
 
 	//imprime o tabuleiro no console limpando a tela
 	public static void printBoard(Board board) {
@@ -56,11 +56,14 @@ public abstract class Interface {
 	}
 
 	//imprime a primeira tela do programa
-	public static void firstScreen() {
+	public static boolean firstScreen() {
 		System.out.println("\nTic Tac Toe\n");
 		System.out.println("Choose game mode:");
 		System.out.println("1 - Player vs Player");
 		System.out.println("2 - Player vs IA");
+		
+		boolean multiplayer = Interface.readInt() == 1;
+		return multiplayer;
 	}
 
 	//imprime a segunda tela do programa
@@ -124,12 +127,15 @@ public abstract class Interface {
 		}
 	}
 
-	public static void endScreen(){
+	public static int restartScreen(){
 		System.out.println("Game Over!");
 		System.out.println();
 		System.out.println("1 - Restart game (Don't change options)");
 		System.out.println("2 - Restart game (Change options)");
 		System.out.println("3 - Exit Game");
+
+		int option = Interface.readInt();
+		return option;
 	}
 
 	//imprime a interface para insercão dos nomes
@@ -137,9 +143,14 @@ public abstract class Interface {
 		System.out.print("Insert player " + playerNumber + " name: ");
 	}
 
-	public static void tutorialSelectScreen() {
+	public static boolean tutorialSelectScreen() {
 		System.out.println("\nPress Y/y or Enter key to show a tutorial on how to select cells");
 		System.out.println("Press any other key to skip");
+
+		String tutorialOption = Interface.readString();
+		boolean showTutorial = tutorialOption.isEmpty() || tutorialOption.charAt(0) == 'y' || tutorialOption.charAt(0) == 'Y';
+
+		return showTutorial;
 	}
 
 	public static void tutorialScreen(int boardSize) {
@@ -149,19 +160,14 @@ public abstract class Interface {
 		System.out.println("Example: 1 2, puts your draw (X or O) in the cell at the first line and second column of the matrix.\n");
 	}
 
-	public String readString(){
+	public static int readInt(){
+		int n = input.nextInt();
+		input.nextLine();
+		return n;
+	}
+	
+	public static String readString(){
 		String read = input.nextLine();
 		return read;
-	}
-
-	public boolean readChar(){
-		String key = readString();
-		if(key.equals("Y") || key.equals("y") || key.equals(" ")){
-			return true;
-		}
-		else{
-			return false;
-		}
-
 	}
 }
