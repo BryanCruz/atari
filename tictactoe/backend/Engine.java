@@ -3,26 +3,18 @@ package tictactoe.backend;
 import tictactoe.elements.*;
 
 public abstract class Engine {
-
-
-  //set the values of each type of cell
-  private static final char emptySymbol   = '-';
-
   // clear the board for a new game
   public static void clearBoard(Board board) {
     int size = board.getBoardSize();
     for(int i = 0; i < size; i++){
       for(int j = 0; j < size; j++){
-        board.setCell(i, j, new Cell(emptySymbol, 0));
+        board.setCell(i, j, new Cell());
       }
     }
   }
 
   // make a play, i.e, defines a value for a cell in the board
   public static void play(Board board, Player player, int[] pos) {
-    Cell tmp = board.getCell(pos[0], pos[1]);
-    tmp.setSymbol(player.getSymbol());
-
     if (player.getNumber() == 1) {
       tmp.setValue(1);
     } else {
@@ -37,7 +29,7 @@ public abstract class Engine {
 
   // checks if the cell has already been played
   public static boolean checkEmptyCell(Board board, int i, int j){
-    return board.getCell(i, j).getSymbol() == emptySymbol;
+    return board.getCell(i, j).getValue() == 0;
   }
 
   // returns 1 if player1 wins
