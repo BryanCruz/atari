@@ -121,8 +121,14 @@ public abstract class Interface {
 	}
 
 	//imprime a interface para insercão dos nomes
-	public static void nameScreen(int playerNumber) {
+	public static String nameScreen(int playerNumber) {
 		System.out.print("Insert player " + playerNumber + " name: ");
+		String name = "";
+		while(name.isEmpty()){
+			name = UserInput.readString();
+		}
+
+		return name;
 	}
 
 	public static boolean tutorialSelectScreen() {

@@ -14,15 +14,14 @@ public class Game {
 		Player[] players = new Player[2];
 
 		// create player 1
-		Interface.nameScreen(1);
-
-		players[0] = new Human(scanner.nextLine(), 1);
+		String name1 = Interface.nameScreen(1);
+		players[0] = new Human(name1, 1);
 
 		// create player 2
 		if (difficulty == 0) {
 			//If it's multiplayer, instatiates a new Human
-			Interface.nameScreen(2);
-			players[1] = new Human(scanner.nextLine(), 2);
+			String name2 = Interface.nameScreen(2);
+			players[1] = new Human(name2, 2);
 		} else {
 			//If it's singleplayer, instatiates an IA
 			players[1] = new IA(difficulty, 2);
