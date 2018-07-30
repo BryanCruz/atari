@@ -11,7 +11,7 @@ import tictactoe.elements.IA;
 
 public abstract class Interface {
 
-	Scanner input = new Scanner(System.in);
+	private static Scanner input = new Scanner(System.in);
 
 	//imprime o tabuleiro no console limpando a tela
 	public static void printBoard(Board board) {
@@ -56,11 +56,14 @@ public abstract class Interface {
 	}
 
 	//imprime a primeira tela do programa
-	public static void firstScreen() {
+	public static boolean firstScreen() {
 		System.out.println("\nTic Tac Toe\n");
 		System.out.println("Choose game mode:");
 		System.out.println("1 - Player vs Player");
 		System.out.println("2 - Player vs IA");
+		
+		boolean multiplayer = Interface.readInt() == 1;
+		return multiplayer;
 	}
 
 	//imprime a segunda tela do programa
@@ -131,6 +134,12 @@ public abstract class Interface {
 		System.out.println("Example: 1 2, puts your draw (X or O) in the cell at the first line and second column of the matrix.\n");
 	}
 
+	public static int readInt(){
+		int n = input.nextInt();
+		input.nextLine();
+		return n;
+	}
+	
 	public String readString(){
 		String read = input.nextLine();
 		return read;

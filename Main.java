@@ -12,12 +12,9 @@ class Main {
 		while(restartOption != 3){
 			if(restartOption == 2){	
 				boardSize = 3;
-
-				Interface.firstScreen();
-
+				
 				// checks if it is a multiplayer game
-				boolean multiplayer = sc.nextInt() == 1;
-				sc.nextLine();
+				boolean multiplayer = Interface.firstScreen();
 
 				if (multiplayer) {
 					difficulty = 0;
