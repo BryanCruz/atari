@@ -21,7 +21,7 @@ class Main {
 				}
 				else {
 					// if it isn't, the player chooses a difficulty to play
-					Interface.difficultyScreen();
+					difficulty = Interface.difficultyScreen();
 				}
 			}
 
