@@ -26,7 +26,8 @@ public class IA implements Player{
 
 	@Override
 	public int[] chooseCell(Board board) {
-		return makeChoice(board);
+		Player humanTest = new Human("Test", 1, 'X');
+		return makeStrategicChoice(board, this.difficulty, this, humanTest);
 	}
 
 	public int[] makeChoice(Board board) {
@@ -61,6 +62,8 @@ public class IA implements Player{
 					bestScore = 0;
 					break;
 			}
+
+			return new int[] {row, column, bestScore};
 		}
 
 		//check the board for empty cells
@@ -107,8 +110,6 @@ public class IA implements Player{
 				Engine.setEmptyCell(board, i, j);
 			}
 		}
-
-
 
 		return new int[] {row, column, bestScore};
 	}
