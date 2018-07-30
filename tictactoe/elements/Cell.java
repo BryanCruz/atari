@@ -22,7 +22,7 @@ public class Cell {
             case 1:
                 symbol = player1Symbol;
                 break;
-            case 2:
+            case -1:
                 symbol = player2Symbol;
                 break;
             default:
