@@ -60,7 +60,7 @@ public class IA implements Player{
 		//base case
 		if (Engine.checkFullBoard() || difficulty == 0 || score != 0 ) {
 			if (score == this.getNumber()) {
-				//player2(AI) won
+				//player2 won
 				bestScore = 1;
 			}
 			else if (score == 0) {
@@ -68,7 +68,7 @@ public class IA implements Player{
 				bestScore = 0;
 			}
 			else {
-				//player1(Human) won
+				//player1 won
 				bestScore = -1;
 			}
 		}
