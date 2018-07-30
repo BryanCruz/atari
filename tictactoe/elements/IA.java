@@ -24,7 +24,7 @@ public class IA implements Player{
 
 	@Override
 	public int[] chooseCell(Board board) {
-		Player humanTest = new Human("Test", 1, 'X');
+		Player humanTest = new Human("Test", 1);
 		return makeStrategicChoice(board, this.difficulty, this, humanTest);
 	}
 
