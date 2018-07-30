@@ -8,7 +8,7 @@ import tictactoe.frontend.UserInput;
 import java.util.InputMismatchException;
 
 public abstract class Interface {
-
+	private static Board board = Board.getInstance();
 	// print a line to make visualization cleaner
 	public static void printDashLine(){
 		for(int i = 0; i < 33; i++){
@@ -18,7 +18,7 @@ public abstract class Interface {
 	}
 
 	//imprime o tabuleiro no console limpando a tela
-	public static void printBoard(Board board) {
+	public static void printBoard() {
 		for (int i = 0; i < board.getBoardSize(); i++) {
 			for (int j = 0; j < board.getBoardSize(); j++) {
 				System.out.printf(" %c %c", board.getCell(i, j).getSymbol(), (j == board.getBoardSize()-1 ? '\n' : '|'));
@@ -28,14 +28,14 @@ public abstract class Interface {
 	}
 
 	// faz a jogada do humano
-	public static int[] playScreen(Board board, Player player){
+	public static int[] playScreen(Player player){
 		System.out.print(player.getName() + "'s turn, choose a cell: ");
 		int chosenCells[] = new int[] {-1, -1};
 
 		while(chosenCells[0] < 0 || chosenCells[1] < 0){
 			try{
 				try{
-					chosenCells = player.chooseCell(board);
+					chosenCells = player.chooseCell();
 				}
 				catch(InputMismatchException e){
 					throw new InvalidCellException("Only numbers are allowed here");
@@ -77,7 +77,7 @@ public abstract class Interface {
 
 		return option;
 	}
-	
+
 	//imprime a segunda tela do programa e retorna a escolha do jogador
 	public static int difficultyScreen() {
 		System.out.println("\nChoose IA difficulty:");

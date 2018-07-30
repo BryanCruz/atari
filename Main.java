@@ -21,7 +21,7 @@ class Main {
 			}
 
 			// start a game
-			Game.startGame(boardSize, gameMode, difficulty);
+			Game.startGame(gameMode, difficulty);
 			restartOption = Interface.restartScreen();
 		}
 	}

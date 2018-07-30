@@ -1,7 +1,7 @@
 package tictactoe.elements;
 
 public interface Player {
-  int[] chooseCell(Board board);
+  int[] chooseCell();
   void setNumber(int number);
   int getNumber();
   String getName();

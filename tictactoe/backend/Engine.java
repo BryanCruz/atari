@@ -3,8 +3,10 @@ package tictactoe.backend;
 import tictactoe.elements.*;
 
 public abstract class Engine {
+
+  private static Board board = Board.getInstance();
   // clear the board for a new game
-  public static void clearBoard(Board board) {
+  public static void clearBoard() {
     int size = board.getBoardSize();
     for(int i = 0; i < size; i++){
       for(int j = 0; j < size; j++){
@@ -16,7 +18,7 @@ public abstract class Engine {
   }
 
   // make a play, i.e, defines a value for a cell in the board
-  public static void play(Board board, Player player, int[] pos) {
+  public static void play(Player player, int[] pos) {
     Cell cell = board.getCell(pos[0], pos[1]);
     if (player.getNumber() == 1) {
       cell.setValue(1);
@@ -38,7 +40,7 @@ public abstract class Engine {
   // returns 1 if player1 wins
   // returns 2 if player2 wins
   // returns 0 otherwise
-  public static int checkWin(Board board) {
+  public static int checkWin() {
     int boardSize = board.getBoardSize();
 
     // horizontal and vertical checking
@@ -77,7 +79,7 @@ public abstract class Engine {
   }
 
   // checks if the board is full
-  public static boolean checkFullBoard(Board board){
+  public static boolean checkFullBoard(){
     int boardSize = board.getBoardSize();
     for(int i = 0; i < boardSize; i++){
       for(int j = 0; j < boardSize; j++){
@@ -90,7 +92,7 @@ public abstract class Engine {
   }
 
   // checks if the game is over
-  public static boolean checkGameOver(Board board) {
-    return (Engine.checkFullBoard(board) || Engine.checkWin(board) != 0);
+  public static boolean checkGameOver() {
+    return (Engine.checkFullBoard() || Engine.checkWin() != 0);
   }
 }

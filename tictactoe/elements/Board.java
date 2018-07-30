@@ -1,10 +1,18 @@
 package tictactoe.elements;
 
 public class Board {
-	private Cell[][] board;
 
-	public Board(int boardSize) {
+	private Cell[][] board;
+	private static Board instance;
+	private Board(int boardSize) {
 		this.setBoard(new Cell[boardSize][boardSize]);
+	}
+
+	public static Board getInstance() {
+		if (instance == null) {
+			instance = new Board(3);
+		}
+		return instance;
 	}
 
 	//Returns the board

@@ -7,13 +7,13 @@ import java.util.Random;
 
 public class IA implements Player{
 
-	//private Board board;
+	private Board board = Board.getInstance();
 	private int difficulty;
 	private int number;
 	private Random random;
 
 	public IA(int difficulty, int number) {
-		this.setDifficulty(difficulty);
+		this.setDifficulty(9);
 		this.setNumber(number);
 		random = new Random();
 	}
@@ -24,7 +24,7 @@ public class IA implements Player{
 	}
 
 	@Override
-	public int[] chooseCell(Board board) {
+	public int[] chooseCell() {
 		try{
 			TimeUnit.SECONDS.sleep(1);
 		}
@@ -33,14 +33,14 @@ public class IA implements Player{
 			System.out.println("handling exception");
 		}
 		if(this.getDifficulty() <= 1){
-			return makeChoice(board);
+			return makeChoice();
 		}else{
 			Player humanTest = new Human("Test", 1);
-			return makeStrategicChoice(board, this.getDifficulty(), true, this, humanTest);
+			return makeStrategicChoice(this.getDifficulty(), true, this, humanTest);
 		}
 	}
 
-	public int[] makeChoice(Board board) {
+	public int[] makeChoice() {
 		int x, y;
 		do {
 			x = Math.abs(random.nextInt()) % board.getBoardSize();
@@ -51,14 +51,14 @@ public class IA implements Player{
 
 
 	//Recursive algorithm that utilizes minMax strategy
-	public int[] makeStrategicChoice(Board board, int difficulty, boolean maximize, Player currentPlayer, Player opponent) {
+	public int[] makeStrategicChoice(int difficulty, boolean maximize, Player currentPlayer, Player opponent) {
 		int bestScore = 0;
 		int row = -1;
 		int column = -1;
-		int score = Engine.checkWin(board);
+		int score = Engine.checkWin();
 
 		//base case
-		if (Engine.checkFullBoard(board) || difficulty == 0 || score != 0 ) {
+		if (Engine.checkFullBoard() || difficulty == 0 || score != 0 ) {
 			switch (score) {
 				//player1(Human) won
 				case 1:
@@ -83,9 +83,9 @@ public class IA implements Player{
 			for (int j = 0; j < board.getBoardSize(); j++) {
 				// If cell's empty
 				if (Engine.checkEmptyCell(board.getCell(i, j))) {
-					Engine.play(board, currentPlayer, new int[] {i, j});
+					Engine.play(currentPlayer, new int[] {i, j});
 
-					score = makeStrategicChoice(board, difficulty - 1, !maximize, opponent, currentPlayer)[2];
+					score = makeStrategicChoice(difficulty - 1, !maximize, opponent, currentPlayer)[2];
 
 					//If the score of this play is lower than bestScore we update
 					if ((score < bestScore) ^ maximize) {

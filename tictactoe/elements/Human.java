@@ -6,6 +6,7 @@ import tictactoe.backend.Engine;
 public class Human implements Player {
 	private String name;
 	private int number;
+	private Board board = Board.getInstance();
 
 	/*	Overload constructor
 		Parameters : name and number of the player
@@ -42,7 +43,7 @@ public class Human implements Player {
 		Return a vector with the position of the cell (x,y)
 	*/
 	@Override
-	public int[] chooseCell(Board board){
+	public int[] chooseCell(){
 		Scanner sc = new Scanner(System.in);
 		int x, y;
 		x = sc.nextInt()-1;
