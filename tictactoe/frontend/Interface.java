@@ -151,10 +151,12 @@ public abstract class Interface {
 		int n;
 		try{
 			n = input.nextInt();
-			input.nextLine();
 		}
 		catch(InputMismatchException e){
 			throw new Exception("Only numbers are allowed here");
+		}
+		finally{
+			input.nextLine();
 		}
 		return n;
 	}
