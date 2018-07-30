@@ -76,7 +76,7 @@ public abstract class Interface {
 		System.out.println("3 - Hard");
 
 		int option = Interface.readIntOption(1, 3);
-		return num;
+		return option;
 	}
 
 	//imprime a tela de vencedor
