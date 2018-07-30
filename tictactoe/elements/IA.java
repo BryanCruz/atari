@@ -1,5 +1,6 @@
 package tictactoe.elements;
 
+import java.util.concurrent.TimeUnit;
 import tictactoe.elements.Board;
 import tictactoe.backend.Engine;
 import java.util.Random;
@@ -24,8 +25,19 @@ public class IA implements Player{
 
 	@Override
 	public int[] chooseCell(Board board) {
-		Player humanTest = new Human("Test", 1);
-		return makeStrategicChoice(board, this.difficulty, true, this, humanTest);
+		try{
+			TimeUnit.SECONDS.sleep(1);
+		}
+		catch(Exception e){
+			//TODO: find how to handle this
+			System.out.println("handling exception");
+		}
+		if(this.getDifficulty() <= 1){
+			return makeChoice(board);
+		}else{
+			Player humanTest = new Human("Test", 1);
+			return makeStrategicChoice(board, this.getDifficulty(), true, this, humanTest);
+		}
 	}
 
 	public int[] makeChoice(Board board) {
