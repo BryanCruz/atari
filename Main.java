@@ -12,7 +12,7 @@ class Main {
 		while(restartOption != 3){
 			if(restartOption == 2){	
 				boardSize = 3;
-				
+
 				// checks if it is a multiplayer game
 				boolean multiplayer = Interface.firstScreen();
 
@@ -29,9 +29,7 @@ class Main {
 
 			// start a game
 			Game.startGame(boardSize, difficulty);
-			Interface.endScreen();
-			restartOption = sc.nextInt();
-			sc.nextLine();
+			restartOption = Interface.restartScreen();
 		}
 	}
 }

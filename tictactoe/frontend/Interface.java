@@ -125,9 +125,14 @@ public abstract class Interface {
 		System.out.print("Insert player " + playerNumber + " name: ");
 	}
 
-	public static void tutorialSelectScreen() {
+	public static boolean tutorialSelectScreen() {
 		System.out.println("\nPress Y/y or Enter key to show a tutorial on how to select cells");
 		System.out.println("Press any other key to skip");
+
+		String tutorialOption = Interface.readString();
+		boolean showTutorial = tutorialOption.isEmpty() || tutorialOption.charAt(0) == 'y' || tutorialOption.charAt(0) == 'Y';
+
+		return showTutorial;
 	}
 
 	public static void tutorialScreen(int boardSize) {
@@ -143,19 +148,8 @@ public abstract class Interface {
 		return n;
 	}
 	
-	public String readString(){
+	public static String readString(){
 		String read = input.nextLine();
 		return read;
-	}
-
-	public boolean readChar(){
-		String key = readString();
-		if(key.equals("Y") || key.equals("y") || key.equals(" ")){
-			return true;
-		}
-		else{
-			return false;
-		}
-
 	}
 }

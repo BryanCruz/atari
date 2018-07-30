@@ -29,10 +29,8 @@ public class Game {
 		}
 
 		//prints a screen to select or skip the tutorial
-		Interface.tutorialSelectScreen();
-		String tutorialOption = scanner.nextLine();
-		boolean showTutorial = tutorialOption.isEmpty() || tutorialOption.charAt(0) == 'y' || tutorialOption.charAt(0) == 'Y';
-
+		boolean showTutorial = Interface.tutorialSelectScreen();
+		
 		//prints or skip the tutorial screen
 		if(showTutorial)
 			Interface.tutorialScreen(board.getBoardSize());
