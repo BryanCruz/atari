@@ -109,12 +109,15 @@ public abstract class Interface {
 		}
 	}
 
-	public static void endScreen(){
+	public static int restartScreen(){
 		System.out.println("Game Over!");
 		System.out.println();
 		System.out.println("1 - Restart game (Don't change options)");
 		System.out.println("2 - Restart game (Change options)");
 		System.out.println("3 - Exit Game");
+
+		int option = Interface.readInt();
+		return option;
 	}
 
 	//imprime a interface para insercão dos nomes
