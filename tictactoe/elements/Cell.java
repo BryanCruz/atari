@@ -11,8 +11,8 @@ public class Cell {
     /*  Overload constructor
         Parameters: character and a integer
     */
-    public Cell(int value) {
-        this.setValue(value);
+    public Cell() {
+        this.setValue(0);
     }
 
     //Returns the cell symbol
@@ -34,10 +34,15 @@ public class Cell {
 
     //Sets the value of the cell
     public void setValue(int value) {
-        if(value < 0)
+        if(value < 0){
             this.value = -1;
-        else 
+        } 
+        else if(value == 0){
+            this.value = 0;
+        }
+        else{
             this.value = 1;
+        }
     }
 
     //Returns the cell's value
