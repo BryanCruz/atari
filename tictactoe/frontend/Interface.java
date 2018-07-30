@@ -61,13 +61,13 @@ public abstract class Interface {
 		System.out.println("Choose game mode:");
 		System.out.println("1 - Player vs Player");
 		System.out.println("2 - Player vs IA");
-		
+
 		boolean multiplayer = Interface.readInt() == 1;
 		return multiplayer;
 	}
 
 	//imprime a segunda tela do programa
-	public static void difficultyScreen() {
+	public static int difficultyScreen() {
 
 		System.out.println("\nChoose IA difficulty:");
 		System.out.println("1 - Easy");
@@ -165,7 +165,7 @@ public abstract class Interface {
 		input.nextLine();
 		return n;
 	}
-	
+
 	public static String readString(){
 		String read = input.nextLine();
 		return read;
