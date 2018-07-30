@@ -131,11 +131,11 @@ public abstract class Interface {
 	}
 
 	public static boolean tutorialSelectScreen() {
-		System.out.println("\nPress Y/y or Enter key to show a tutorial on how to select cells");
+		System.out.println("\nPress Y/y to show a tutorial on how to select cells");
 		System.out.println("Press any other key to skip");
 
 		String tutorialOption = Interface.readString();
-		boolean showTutorial = tutorialOption.isEmpty() || tutorialOption.charAt(0) == 'y' || tutorialOption.charAt(0) == 'Y';
+		boolean showTutorial = tutorialOption.charAt(0) == 'y' || tutorialOption.charAt(0) == 'Y';
 
 		return showTutorial;
 	}
