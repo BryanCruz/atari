@@ -4,11 +4,15 @@ import java.util.Scanner;
 import java.util.InputMismatchException;
 
 public abstract class UserInput{
-  private static Scanner input = new Scanner(System.in);
-	public static int readInt() throws Exception{
-		int n;
+	private static Scanner input = new Scanner(System.in);
+
+	// read n integer inputs in a line
+	public static int[] readInt(int n) throws Exception{
+		int[] numbersRead = new int[n];
 		try{
-			n = input.nextInt();
+			for(int i = 0; i < n; i++){
+				numbersRead[i] = input.nextInt();
+			}
 		}
 		catch(InputMismatchException e){
 			throw new Exception("Only numbers are allowed here");
@@ -16,7 +20,13 @@ public abstract class UserInput{
 		finally{
 			input.nextLine();
 		}
-		return n;
+		return numbersRead;
+	}
+
+	// read a integer in a line
+	public static int readInt() throws Exception{
+		int[] numberRead = UserInput.readInt(1);
+		return numberRead[0];
 	}
 
 	public static int readIntOption(int minOption, int maxOption){
