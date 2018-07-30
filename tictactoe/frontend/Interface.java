@@ -62,17 +62,7 @@ public abstract class Interface {
 		System.out.println("1 - Player vs Player");
 		System.out.println("2 - Player vs IA");
 
-		int option = -1;
-		while(option < 0){
-			try{
-				option = Interface.readInt();
-			}
-			catch(Exception e){
-				option = -1;
-				System.out.println("An error has ocurred: " + e.getMessage());
-				System.out.print("Choose a new option: ");
-			}
-		}
+		int option = Interface.readIntOption(1, 2);
 		boolean multiplayer = option == 1;
 		return multiplayer;
 	}
@@ -84,22 +74,8 @@ public abstract class Interface {
 		System.out.println("1 - Easy");
 		System.out.println("2 - Normal");
 		System.out.println("3 - Hard");
-		int num = -1;
-		do {
-			try {
-				num = readInt();
-				if (num > 3 || num < 1)
-					throw new Exception("That's not a valid difficulty");
 
-			} catch (InputMismatchException e) {
-				System.out.println("Something went wrong: Only numbers are allowed here");
-				System.out.print("Choose a new difficulty: ");
-			} catch (Exception e) {
-				System.out.println("Something went wrong:" + e.getMessage());
-				System.out.print( "Choose a new difficulty: ");
-			}
-		} while (num > 3 || num < 1);
-
+		int option = Interface.readIntOption(1, 3);
 		return num;
 	}
 
@@ -145,17 +121,7 @@ public abstract class Interface {
 		System.out.println("2 - Restart game (Change options)");
 		System.out.println("3 - Exit Game");
 
-		int option = -1;
-		while(option < 0){
-			try{
-				option = Interface.readInt();
-			}
-			catch(Exception e){
-				option = -1;
-				System.out.println("An error has ocurred: " + e.getMessage());
-				System.out.print("Choose a new option: ");
-			}
-		}
+		int option = Interface.readIntOption(1, 3);
 		return option;
 	}
 
@@ -196,5 +162,24 @@ public abstract class Interface {
 	public static String readString(){
 		String read = input.nextLine();
 		return read;
+	}
+
+	public static int readIntOption(int minOption, int maxOption){
+		int option = -1;
+		while(option < 0){
+			try {
+				option = Interface.readInt();
+
+				if (option < minOption || option > maxOption){
+					throw new Exception("That's not a valid option");
+				}
+			}
+			catch (Exception e) {
+				option = -1;
+				System.out.println("Something went wrong: " + e.getMessage());
+				System.out.print("Choose a new option: ");
+			}
+		}
+		return option;
 	}
 }
