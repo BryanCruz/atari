@@ -35,7 +35,7 @@ public abstract class Interface {
 				if(chosenCells[0] < 0 || chosenCells[1] < 0 || chosenCells[0] >= board.getBoardSize() || chosenCells[1] >= board.getBoardSize()){
 					throw new Exception("This is not a valid cell");
 				}
-				else if(!Engine.checkEmptyCell(board, chosenCells[0], chosenCells[1])){
+				else if(!Engine.checkEmptyCell(board.getCell(chosenCells[0], chosenCells[1]))){
 					throw new Exception("This cell is not empty");
 				}
 			}

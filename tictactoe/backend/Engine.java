@@ -8,29 +8,31 @@ public abstract class Engine {
     int size = board.getBoardSize();
     for(int i = 0; i < size; i++){
       for(int j = 0; j < size; j++){
-        board.setCell(i, j, new Cell());
+        Cell cell = new Cell();
+        Engine.setEmptyCell(board.getCell(i, j));
+        board.setCell(i, j, cell);
       }
     }
   }
 
   // make a play, i.e, defines a value for a cell in the board
   public static void play(Board board, Player player, int[] pos) {
-    Cell tmp = board.getCell(pos[0], pos[1]);
+    Cell cell = board.getCell(pos[0], pos[1]);
     if (player.getNumber() == 1) {
-      tmp.setValue(1);
+      cell.setValue(1);
     } else {
-      tmp.setValue(-1);
+      cell.setValue(-1);
     }
   }
 
   //set a empty cell
-  public static void setEmptyCell(Board board, int i, int j) {
-    board.getCell(i, j).setValue(0);
+  public static void setEmptyCell(Cell cell) {
+    cell.setValue(0);
   }
 
   // checks if the cell has already been played
-  public static boolean checkEmptyCell(Board board, int i, int j){
-    return board.getCell(i, j).getValue() == 0;
+  public static boolean checkEmptyCell(Cell cell){
+    return cell.getValue() == 0;
   }
 
   // returns 1 if player1 wins
@@ -79,7 +81,7 @@ public abstract class Engine {
     int boardSize = board.getBoardSize();
     for(int i = 0; i < boardSize; i++){
       for(int j = 0; j < boardSize; j++){
-        if(Engine.checkEmptyCell(board, i, j))
+        if(Engine.checkEmptyCell(board.getCell(i, j)))
           return false;
       }
     }

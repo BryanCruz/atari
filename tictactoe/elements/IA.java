@@ -33,7 +33,7 @@ public class IA implements Player{
 		do {
 			x = Math.abs(random.nextInt()) % board.getBoardSize();
 			y = Math.abs(random.nextInt()) % board.getBoardSize();
-		} while (!Engine.checkEmptyCell(board, x, y));
+		} while (!Engine.checkEmptyCell(board.getCell(x, y)));
 		return (new int[] {x, y});
 	}
 
@@ -69,7 +69,7 @@ public class IA implements Player{
 		for (int i = 0; i < board.getBoardSize(); i++) {
 			for (int j = 0; j < board.getBoardSize(); j++) {
 				// If cell's empty
-				if (Engine.checkEmptyCell(board, i, j)) {
+				if (Engine.checkEmptyCell(board.getCell(i, j))) {
 					Engine.play(board, currentPlayer, new int[] {i, j});
 
 					score = makeStrategicChoice(board, difficulty - 1, !maximize, opponent, currentPlayer)[2];
@@ -81,7 +81,7 @@ public class IA implements Player{
 						column = j;
 					}
 					//Undo the play
-					Engine.setEmptyCell(board, i, j);
+					Engine.setEmptyCell(board.getCell(i, j));
 				}
 			}
 		}
