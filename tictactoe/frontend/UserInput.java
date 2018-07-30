@@ -2,12 +2,13 @@ package tictactoe.frontend;
 
 import java.util.Scanner;
 import java.util.InputMismatchException;
+import tictactoe.exceptions.UserInputException;
 
 public abstract class UserInput{
 	private static Scanner input = new Scanner(System.in);
 
 	// read n integer inputs in a line
-	public static int[] readInt(int n) throws Exception{
+	public static int[] readInt(int n) throws UserInputException{
 		int[] numbersRead = new int[n];
 		try{
 			for(int i = 0; i < n; i++){
@@ -15,7 +16,7 @@ public abstract class UserInput{
 			}
 		}
 		catch(InputMismatchException e){
-			throw new Exception("Only numbers are allowed here");
+			throw new UserInputException("Only numbers are allowed here");
 		}
 		finally{
 			input.nextLine();
@@ -24,28 +25,31 @@ public abstract class UserInput{
 	}
 
 	// read a integer in a line
-	public static int readInt() throws Exception{
+	public static int readInt() throws UserInputException{
 		int[] numberRead = UserInput.readInt(1);
 		return numberRead[0];
 	}
 
-	public static int readIntOption(int minOption, int maxOption){
+	public static int readIntOption(int minOption, int maxOption, String optionName){
 		int option = -1;
 		while(option < 0){
 			try {
 				option = UserInput.readInt();
 
 				if (option < minOption || option > maxOption){
-					throw new Exception("That's not a valid option");
+					throw new UserInputException("That option is not inside the valid range", optionName);
 				}
 			}
-			catch (Exception e) {
+			catch (UserInputException e) {
 				option = -1;
-				System.out.println("Something went wrong: " + e.getMessage());
-				System.out.print("Choose a new option: ");
+				System.out.print(e.getMessage());
 			}
 		}
 		return option;
+	}
+
+	public static int readIntOption(int minOption, int maxOption){
+		return UserInput.readIntOption(minOption, maxOption, "option");
 	}
 
 

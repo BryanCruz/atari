@@ -69,7 +69,7 @@ public abstract class Interface {
 		System.out.println("2 - Normal");
 		System.out.println("3 - Hard");
 
-		int option = UserInput.readIntOption(1, 3);
+		int option = UserInput.readIntOption(1, 3, "difficulty");
 		return option;
 	}
 
