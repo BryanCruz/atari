@@ -50,7 +50,7 @@ public abstract class Interface {
 		return chosenCells;
 	}
 
-	//imprime a primeira tela do programa
+	//imprime a primeira tela do programa e retorna a escolha do jogador
 	public static boolean firstScreen() {
 		System.out.println("\nTic Tac Toe\n");
 		System.out.println("Choose game mode:");
@@ -62,7 +62,7 @@ public abstract class Interface {
 		return multiplayer;
 	}
 
-	//imprime a segunda tela do programa
+	//imprime a segunda tela do programa e retorna a escolha do jogador
 	public static int difficultyScreen() {
 
 		System.out.println("\nChoose IA difficulty:");
@@ -75,20 +75,21 @@ public abstract class Interface {
 	}
 
 	//imprime a tela de vencedor
-	public static void winnerScreen(String player){
+	private static void winnerScreen(String player){
 		System.out.println(player + " WON!!!");
 	}
 
 	//imprime a tela de empate
-	public static void tieScreen(){
+	private static void tieScreen(){
 		System.out.println("It's a TIE");
 	}
 
 	//imprime a tela de perdedor
-	public static void loserScreen(){
+	private static void loserScreen(){
 		System.out.println("You LOSE");
 	}
 
+	// imprime a tela de final de jogo (decide entre winScreen, winnerScreen ou loserScreen)
 	public static void finalScreen(int winner, Player player1, Player player2){
 		if (winner == 0) {
 			Interface.tieScreen();
@@ -109,6 +110,7 @@ public abstract class Interface {
 		}
 	}
 
+	// imprime a tela de reiniciar o jogo e retorna a escolha do jogador
 	public static int restartScreen(){
 		System.out.println("Game Over!");
 		System.out.println();
@@ -120,7 +122,7 @@ public abstract class Interface {
 		return option;
 	}
 
-	//imprime a interface para insercão dos nomes
+	// imprime a interface para inserção de um nome o retorna
 	public static String nameScreen(int playerNumber) {
 		System.out.print("Insert player " + playerNumber + " name: ");
 		String name = "";
@@ -131,16 +133,20 @@ public abstract class Interface {
 		return name;
 	}
 
-	public static boolean tutorialSelectScreen() {
+	// imprime a tela de tutorial (se o usuário desejar)
+	public static void tutorialSelectScreen(int boardSize) {
 		System.out.println("\nPress Y/y to show a tutorial on how to select cells");
 		System.out.println("Press any other key to skip");
 
 		String tutorialOption = UserInput.readString();
 		boolean showTutorial = !tutorialOption.isEmpty() && (tutorialOption.charAt(0) == 'y' || tutorialOption.charAt(0) == 'Y');
 
-		return showTutorial;
+		if(showTutorial){
+			Interface.tutorialScreen(boardSize);
+		}
 	}
 
+	// imprime o tutorial
 	public static void tutorialScreen(int boardSize) {
 		System.out.println("\nHow to play:");
 		System.out.println("The board is a matrix of " + boardSize + "x" + boardSize + " elements.");

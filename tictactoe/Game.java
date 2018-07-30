@@ -27,13 +27,9 @@ public class Game {
 			players[1] = new IA(difficulty, 2);
 		}
 
-		//prints a screen to select or skip the tutorial
-		boolean showTutorial = Interface.tutorialSelectScreen();
+		//prints a screen to select or skip the tutorial and print or skip the tutorial
+		Interface.tutorialSelectScreen(board.getBoardSize());
 		
-		//prints or skip the tutorial screen
-		if(showTutorial)
-			Interface.tutorialScreen(board.getBoardSize());
-
 		// while game's not over
 		int actualPlayer = 0;
 		Interface.printBoard(board);
