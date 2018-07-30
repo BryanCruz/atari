@@ -39,7 +39,7 @@ public class IA implements Player{
 
 
 	//Recursive algorithm that utilizes minMax strategy
-	public int[] makeStrategicChoice(Board board, int difficulty, Player currentPlayer, Player opponent) {
+	public int[] makeStrategicChoice(Board board, int difficulty, bool max, Player currentPlayer, Player opponent) {
 		int bestScore = 0;
 		int row = -1;
 		int column = -1;
@@ -63,26 +63,26 @@ public class IA implements Player{
 
 			return new int[] {row, column, bestScore};
 		}
-
+		bestScore = max ? Integer.MIN_VALUE : Integer.MAX_VALUE;
 		//check the board for empty cells
 		for (int i = 0; i < board.getBoardSize(); i++) {
 			for (int j = 0; j < board.getBoardSize(); j++) {
 				// Player is opponent(Human), need to minimize
 				if (currentPlayer instanceof Human) {
-					bestScore = Integer.MAX_VALUE;
-
 					// If cell's empty
 					if (Engine.checkEmptyCell(board, i, j)) {
 						Engine.play(board, currentPlayer, new int[] {i, j});
 
-						score = makeStrategicChoice(board, difficulty - 1, opponent, currentPlayer)[2];
+						score = makeStrategicChoice(board, difficulty - 1, !max, opponent, currentPlayer)[2];
 
 						//If the score of this play is lower than bestScore we update
-						if (score < bestScore) {
+						if ((score < bestScore) ^ max) {
 							bestScore = score;
 							row = i;
 							column = j;
 						}
+						//Undo the play
+						Engine.setEmptyCell(board, i, j);
 					}
 
 				//Player is AI, need to maximize
@@ -102,10 +102,10 @@ public class IA implements Player{
 							row = i;
 							column = j;
 						}
+						//Undo the play
+						Engine.setEmptyCell(board, i, j);
 					}
 				}
-				//Undo the play
-				Engine.setEmptyCell(board, i, j);
 			}
 		}
 
