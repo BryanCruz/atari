@@ -14,7 +14,7 @@ public class IA implements Player{
 	private Random random;
 
 	public IA(int difficulty, int number) {
-		this.setDifficulty(9);
+		this.setDifficulty(difficulty);
 		this.setNumber(number);
 		random = new Random();
 	}
