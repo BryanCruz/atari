@@ -4,6 +4,7 @@ import java.util.concurrent.TimeUnit;
 import tictactoe.elements.Board;
 import tictactoe.backend.Engine;
 import java.util.Random;
+import java.util.ArrayList;
 
 public class IA implements Player{
 
@@ -35,8 +36,8 @@ public class IA implements Player{
 		if(this.getDifficulty() <= 1){
 			return makeChoice();
 		}else{
-			Player humanTest = new Human("Test", this.getNumber() == 1 ? 2 : 1);
-			return makeStrategicChoice(this.getDifficulty(), true, this, humanTest);
+			Player testPlayer = new IA(9, this.getNumber() == 1 ? 2 : 1);
+			return makeStrategicChoice(this.getDifficulty(), true, this, testPlayer);
 		}
 	}
 
@@ -53,9 +54,9 @@ public class IA implements Player{
 	//Recursive algorithm that utilizes minMax strategy
 	public int[] makeStrategicChoice(int difficulty, boolean maximize, Player currentPlayer, Player opponent) {
 		int bestScore = 0;
-		int row = -1;
-		int column = -1;
+		int[] choice = new int[] {-1, -1, 0};
 		int score = Engine.checkWin();
+		ArrayList<int[]> possibleChoices = new ArrayList<>();
 
 		//base case
 		if (Engine.checkFullBoard() || difficulty == 0 || score != 0 ) {
@@ -84,10 +85,15 @@ public class IA implements Player{
 						score = makeStrategicChoice(difficulty - 1, !maximize, opponent, currentPlayer)[2];
 
 						//If the score of this play is lower than bestScore we update
-						if ((score < bestScore) ^ maximize) {
+						if (score == bestScore) {
+							possibleChoices.add(new int[] {i, j, bestScore});
+						}
+						else if ((score < bestScore) ^ maximize) {
 							bestScore = score;
-							row = i;
-							column = j;
+							// row = i;
+							// column = j;
+							possibleChoices.clear();
+							possibleChoices.add(new int[] {i, j, bestScore});
 						}
 						//Undo the play
 						Engine.setEmptyCell(board.getCell(i, j));
@@ -95,7 +101,11 @@ public class IA implements Player{
 				}
 			}
 		}
-		return new int[] {row, column, bestScore};
+		if (!possibleChoices.isEmpty()) {
+			choice = possibleChoices.get(random.nextInt(possibleChoices.size()));
+		}
+
+		return choice;
 	}
 
 	@Override
