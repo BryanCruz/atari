@@ -117,14 +117,18 @@ public abstract class Interface {
 			Player winnerPlayer = winner == 1 ? player1 : player2;
 			Player loserPlayer  = winner == 1 ? player2 : player1;
 
-			if (winnerPlayer instanceof Human) {
-				if(loserPlayer instanceof Human)
-					Interface.winnerScreen(winnerPlayer.getName());
-				else
-					Interface.winnerScreen("YOU");
+			if ((winnerPlayer instanceof Human && loserPlayer instanceof Human) ||
+				(winnerPlayer instanceof IA    && loserPlayer instanceof IA))    {
+				// player vs player or computer vs computer
+				Interface.winnerScreen(winnerPlayer.getName());
 			}
 			else {
-				Interface.loserScreen();
+				// player vs computer
+				if(winnerPlayer instanceof Human){
+					Interface.winnerScreen("YOU");
+				}else{
+					Interface.loserScreen();
+				}
 			}
 		}
 
