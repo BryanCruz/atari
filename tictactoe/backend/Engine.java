@@ -2,6 +2,7 @@ package tictactoe.backend;
 
 import tictactoe.elements.*;
 
+// Class responsible for the game functions, e.g., check if game's over.
 public abstract class Engine {
 
   private static Board board = Board.getInstance();
