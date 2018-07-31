@@ -8,9 +8,7 @@ public class Cell {
     private static final char player1Symbol   = 'X';
     private static final char player2Symbol   = 'O';
 
-    /*  Overload constructor
-        Parameters: character and a integer
-    */
+    // Overload constructor        
     public Cell() {
         this.setValue(0);
     }
