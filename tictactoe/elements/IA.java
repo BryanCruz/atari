@@ -19,6 +19,7 @@ public class IA implements Player{
 		random = new Random();
 	}
 	
+	// Controls what strategy the AI will utilize to make a choice
 	@Override
 	public int[] chooseCell() {
 		try{
