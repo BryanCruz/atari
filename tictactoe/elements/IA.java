@@ -6,16 +6,15 @@ import tictactoe.backend.Engine;
 import java.util.Random;
 import java.util.ArrayList;
 
-public class IA implements Player{
+public class IA extends Player{
 
 	private Board board = Board.getInstance();
 	private int difficulty;
-	private int number;
 	private Random random;
 
 	public IA(int difficulty, int number) {
+		super(number);
 		this.setDifficulty(difficulty);
-		this.setNumber(number);
 		random = new Random();
 	}
 	
@@ -120,18 +119,6 @@ public class IA implements Player{
 
 		return choice;
 	}	
-
-	// Set the AI's number
-	@Override
-	public void setNumber(int number) {
-		this.number = number;
-	}
-	
-	// Returns the AI's Number
-	@Override
-	public int getNumber() {
-		return this.number;
-	}
 
 	// Set the AI's difficulty
 	public void setDifficulty(int difficulty) {
