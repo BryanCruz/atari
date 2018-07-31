@@ -1,5 +1,6 @@
 package tictactoe.elements;
 
+// Class that represents the game board
 public class Board {
 
 	private Cell[][] board;
@@ -8,6 +9,7 @@ public class Board {
 		this.setBoard(new Cell[boardSize][boardSize]);
 	}
 
+	// Checks if there's already a board instantiate, if there's not, instatiates a new one 
 	public static Board getInstance() {
 		if (instance == null) {
 			instance = new Board(3);
