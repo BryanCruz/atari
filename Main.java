@@ -5,11 +5,10 @@ class Main {
 	public static void main(String[] args) {
 
 		int restartOption = 2;
-		int boardSize = 3, difficulty = 0, gameMode = 0;
+		int difficulty = 0, gameMode = 0;
 
 		while(restartOption != 3){
-			if(restartOption == 2){
-				boardSize = 3;
+			if(restartOption == 2){			
 
 				// checks the game mode
 				gameMode = Interface.firstScreen();
