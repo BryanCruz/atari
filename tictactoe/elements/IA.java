@@ -31,7 +31,7 @@ public class IA extends Player{
 		int iaDifficulty = this.getDifficulty();
 		//If difficulty == 1, it plays randomly
 		if (iaDifficulty == 1) {
-			return makeChoice();
+			return makeRandomChoice();
 		}
 		else {
 			Player testPlayer = new IA(9, this.getNumber() == 1 ? 2 : 1);
@@ -39,7 +39,7 @@ public class IA extends Player{
 			if (iaDifficulty == 2) {
 				double option = random.nextDouble();
 				if (option < 0.5) {
-					return makeChoice();
+					return makeRandomChoice();
 				}
 				else {
 					return makeStrategicChoice(this.getDifficulty(), true, this, testPlayer);
@@ -57,7 +57,7 @@ public class IA extends Player{
 	}
 
 	// Returns a random position which the AI will play
-	public int[] makeChoice() {
+	public int[] makeRandomChoice() {
 		int x, y;
 		do {
 			x = Math.abs(random.nextInt()) % board.getBoardSize();
