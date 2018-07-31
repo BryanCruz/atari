@@ -18,12 +18,7 @@ public class IA implements Player{
 		this.setNumber(number);
 		random = new Random();
 	}
-
-	@Override
-	public String getName(){
-		return "Computer " + this.getNumber();
-	}
-
+	
 	@Override
 	public int[] chooseCell() {
 		try{
@@ -41,6 +36,7 @@ public class IA implements Player{
 		}
 	}
 
+	// Returns a random position which the AI will play
 	public int[] makeChoice() {
 		int x, y;
 		do {
@@ -51,30 +47,48 @@ public class IA implements Player{
 	}
 
 
-	//Recursive algorithm that utilizes minMax strategy
+	/* 	Recursive algorithm that utilizes minMax strategy to decide which position the AI will play:
+		Heuristc funtion utilized:
+			Win = +1;
+			Lose = -1;
+			Tie = 0;
+		On our turn we maximize the score, on opponent's turn we minimize.
+		The difficulty is a parameter that controls how many times the AI will "lookAhead", i.e., 
+				how many plays it will simulate to decide the best play. At difficulty=9, the AI 
+				simulutes all the possible moves, therefore it'll never loose.
+	*/
 	public int[] makeStrategicChoice(int difficulty, boolean maximize, Player currentPlayer, Player opponent) {
-		int[] choice = new int[] {-1, -1, 0};
-		int score = Engine.checkWin();
-		ArrayList<int[]> possibleChoices = new ArrayList<>();
+		// A vector that stores the row, column and score of a play
+		int[] choice = new int[] {-1, -1, 0};	
+		
+		//Checks for a win, tie or loss
+		int score = Engine.checkWin();	//Checks
+
+		// A list that stores all the  best possible choices for the next move
+		ArrayList<int[]> possibleChoices = new ArrayList<>(); 
 
 		//base case
 		if (Engine.checkFullBoard() || difficulty == 0 || score != 0 ) {
+			// If the score is equal to our(AI) number that means that we won
 			if (score == this.getNumber()) {
 				//player2 won
 				choice[2] = 1;
 			}
+			// If it's zero, we got a tie
 			else if (score == 0) {
 				//Tie
 				choice[2] = 0;
 			}
+			//If it's different, the opponent won
 			else {
 				//player1 won
 				choice[2] = -1;
 			}
 		}
 		else {
+			// Decides if we maximize or minimize the next moves
 			int bestScore = maximize ? Integer.MIN_VALUE : Integer.MAX_VALUE;
-			//check the board for empty cells
+			// Check the board for empty cells
 			for (int i = 0; i < board.getBoardSize(); i++) {
 				for (int j = 0; j < board.getBoardSize(); j++) {
 					// If cell's empty
@@ -86,10 +100,9 @@ public class IA implements Player{
 						if (score == bestScore) {
 							possibleChoices.add(new int[] {i, j, bestScore});
 						}
+						// We utilize a bitwise XOR to decide if the score we got is grater or lower than the bestScore 
 						else if ((score < bestScore) ^ maximize) {
 							bestScore = score;
-							// row = i;
-							// column = j;
 							possibleChoices.clear();
 							possibleChoices.add(new int[] {i, j, bestScore});
 						}
@@ -99,26 +112,40 @@ public class IA implements Player{
 				}
 			}
 		}
+		//Takes a random best choice vector
 		if (!possibleChoices.isEmpty()) {
 			choice = possibleChoices.get(random.nextInt(possibleChoices.size()));
 		}
 
 		return choice;
-	}
+	}	
 
+	// Set the AI's number
 	@Override
 	public void setNumber(int number) {
 		this.number = number;
 	}
+	
+	// Returns the AI's Number
 	@Override
 	public int getNumber() {
 		return this.number;
 	}
 
+	// Set the AI's difficulty
 	public void setDifficulty(int difficulty) {
 		this.difficulty = difficulty;
 	}
+
+	// Returns the AI's difficulty
 	public int getDifficulty() {
 		return this.difficulty;
 	}
+
+	// Return the AI's "name"
+	@Override
+	public String getName(){
+		return "Computer " + this.getNumber();
+	}
+
 }
