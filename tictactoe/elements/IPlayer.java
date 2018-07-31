@@ -1,8 +1,12 @@
 package tictactoe.elements;
 
-public interface IPlayer{
-    void setNumber(int number);
-    int getNumber();
-    String getName();
-    int[] chooseCell();
+public interface IPlayer {
+
+  String getName();
+
+  int getNumber();
+
+  void setNumber(int number);
+
+  int[] chooseCell();
 }

@@ -1,27 +1,28 @@
-import tictactoe.frontend.Interface;
 import tictactoe.Game;
+import tictactoe.frontend.Interface;
 
-class Main {
-	public static void main(String[] args) {
+public class Main {
 
-		int restartOption = 2;
-		int difficulty = 0, gameMode = 0;
+  public static void main(String[] args) {
 
-		while(restartOption != 3){
-			if(restartOption == 2){			
+    int restartOption = 2;
 
-				// checks the game mode
-				gameMode = Interface.firstScreen();
+    int difficulty = 0, gameMode = 0;
 
-				if (gameMode != 1) {
-					// if there is a computer player, chooses a difficulty to play
-					difficulty = Interface.difficultyScreen();
-				}
-			}
+    while (restartOption != 3) {
+      if (restartOption == 2) {
+        // checks the game mode
+        gameMode = Interface.firstScreen();
 
-			// start a game
-			Game.startGame(gameMode, difficulty);
-			restartOption = Interface.restartScreen();
-		}
-	}
+        if (gameMode != 1) {
+          // if there is a computer player, chooses a difficulty to play
+          difficulty = Interface.difficultyScreen();
+        }
+      }
+
+      // start a game
+      Game.startGame(gameMode, difficulty);
+      restartOption = Interface.restartScreen();
+    }
+  }
 }
