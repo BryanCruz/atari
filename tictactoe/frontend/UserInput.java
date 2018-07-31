@@ -7,7 +7,7 @@ import tictactoe.exceptions.UserInputException;
 public abstract class UserInput{
 	private static Scanner input = new Scanner(System.in);
 
-	// read a integer in a line
+	// Read an integer in a line
 	public static int readInt() throws UserInputException{
 		int n = -1;
 		try{
@@ -22,6 +22,8 @@ public abstract class UserInput{
 		return n;
 	}
 
+	
+	// Read an integer in a range [minOption, maxOption]
 	public static int readIntOption(int minOption, int maxOption, String optionName){
 		int option = -1;
 		while(option < 0){
@@ -40,10 +42,13 @@ public abstract class UserInput{
 		return option;
 	}
 
+	
+	// Read an integer in a range [minOption, maxOption]
 	public static int readIntOption(int minOption, int maxOption){
 		return UserInput.readIntOption(minOption, maxOption, "option");
 	}
 
+	// Read a String in a line
 	public static String readString(){
 		String read = input.nextLine();
 		return read;
