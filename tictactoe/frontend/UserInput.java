@@ -4,6 +4,7 @@ import java.util.Scanner;
 import java.util.InputMismatchException;
 import tictactoe.exceptions.UserInputException;
 
+// Read and validate the user's inputs
 public abstract class UserInput{
 	private static Scanner input = new Scanner(System.in);
 
