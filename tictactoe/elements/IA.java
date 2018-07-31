@@ -53,7 +53,6 @@ public class IA implements Player{
 
 	//Recursive algorithm that utilizes minMax strategy
 	public int[] makeStrategicChoice(int difficulty, boolean maximize, Player currentPlayer, Player opponent) {
-		int bestScore = 0;
 		int[] choice = new int[] {-1, -1, 0};
 		int score = Engine.checkWin();
 		ArrayList<int[]> possibleChoices = new ArrayList<>();
@@ -62,19 +61,19 @@ public class IA implements Player{
 		if (Engine.checkFullBoard() || difficulty == 0 || score != 0 ) {
 			if (score == this.getNumber()) {
 				//player2 won
-				bestScore = 1;
+				choice[2] = 1;
 			}
 			else if (score == 0) {
 				//Tie
-				bestScore = 0;
+				choice[2] = 0;
 			}
 			else {
 				//player1 won
-				bestScore = -1;
+				choice[2] = -1;
 			}
 		}
 		else {
-			bestScore = maximize ? Integer.MIN_VALUE : Integer.MAX_VALUE;
+			int bestScore = maximize ? Integer.MIN_VALUE : Integer.MAX_VALUE;
 			//check the board for empty cells
 			for (int i = 0; i < board.getBoardSize(); i++) {
 				for (int j = 0; j < board.getBoardSize(); j++) {
@@ -84,7 +83,6 @@ public class IA implements Player{
 
 						score = makeStrategicChoice(difficulty - 1, !maximize, opponent, currentPlayer)[2];
 
-						//If the score of this play is lower than bestScore we update
 						if (score == bestScore) {
 							possibleChoices.add(new int[] {i, j, bestScore});
 						}
