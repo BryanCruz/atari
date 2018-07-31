@@ -85,8 +85,9 @@ public abstract class Interface {
 		System.out.println("1 - Easy");
 		System.out.println("2 - Normal");
 		System.out.println("3 - Hard");
+		System.out.println("4 - Impossible");
 
-		int option = UserInput.readIntOption(1, 3, "difficulty");
+		int option = UserInput.readIntOption(1, 4, "difficulty");
 
 		Interface.printDashLine();
 
@@ -108,7 +109,7 @@ public abstract class Interface {
 		System.out.println("You LOSE");
 	}
 
-	//Decide if the game prints the winner, loser or tie screen 
+	//Decide if the game prints the winner, loser or tie screen
 	public static void finalScreen(int winner, Player player1, Player player2){
 		if (winner == 0) {
 			Interface.tieScreen();
@@ -135,7 +136,7 @@ public abstract class Interface {
 		Interface.printDashLine();
 	}
 
-	//Print the restart game option screen and returns the player's choice 
+	//Print the restart game option screen and returns the player's choice
 	public static int restartScreen(){
 		System.out.println("Game Over!");
 		System.out.println();
@@ -150,7 +151,7 @@ public abstract class Interface {
 		return option;
 	}
 
-	//Print the name insertion interface and returns the name 
+	//Print the name insertion interface and returns the name
 	public static String nameScreen(int playerNumber) {
 		System.out.print("Insert player " + playerNumber + " name: ");
 		String name = "";
