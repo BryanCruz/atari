@@ -7,9 +7,10 @@ import tictactoe.exceptions.UserInputException;
 import tictactoe.frontend.UserInput;
 import java.util.InputMismatchException;
 
+//Responsible for the terminal interface
 public abstract class Interface {
 	private static Board board = Board.getInstance();
-	// print a line to make visualization cleaner
+	//Print a line to make visualization cleaner
 	public static void printDashLine(){
 		for(int i = 0; i < 33; i++){
 			System.out.print("=");
@@ -17,7 +18,7 @@ public abstract class Interface {
 		System.out.println();
 	}
 
-	//imprime o tabuleiro no console limpando a tela
+	//Print the game board
 	public static void printBoard() {
 		for (int i = 0; i < board.getBoardSize(); i++) {
 			for (int j = 0; j < board.getBoardSize(); j++) {
@@ -27,7 +28,7 @@ public abstract class Interface {
 		System.out.println();
 	}
 
-	// faz a jogada do humano
+	//Print the play screen and return the chosen cell
 	public static int[] playScreen(Player player){
 		System.out.print(player.getName() + "'s turn, choose a cell: ");
 		int chosenCells[] = new int[] {-1, -1};
@@ -61,7 +62,7 @@ public abstract class Interface {
 		return chosenCells;
 	}
 
-	//imprime a primeira tela do programa e retorna a escolha do jogador
+	//Print the first screen of the game and returns the user game option
 	public static int firstScreen() {
 		Interface.printDashLine();
 
@@ -78,7 +79,7 @@ public abstract class Interface {
 		return option;
 	}
 
-	//imprime a segunda tela do programa e retorna a escolha do jogador
+	//Print the AI's difficulty screen and returns the chosen difficulty
 	public static int difficultyScreen() {
 		System.out.println("\nChoose IA difficulty:");
 		System.out.println("1 - Easy");
@@ -92,22 +93,22 @@ public abstract class Interface {
 		return option;
 	}
 
-	//imprime a tela de vencedor
+	//Print the winner screen
 	private static void winnerScreen(String player){
 		System.out.println(player + " WON!!!");
 	}
 
-	//imprime a tela de empate
+	//Print the tie screen
 	private static void tieScreen(){
 		System.out.println("It's a TIE");
 	}
 
-	//imprime a tela de perdedor
+	//Print the loser screen
 	private static void loserScreen(){
 		System.out.println("You LOSE");
 	}
 
-	// imprime a tela de final de jogo (decide entre winScreen, winnerScreen ou loserScreen)
+	//Decide if the game prints the winner, loser or tie screen 
 	public static void finalScreen(int winner, Player player1, Player player2){
 		if (winner == 0) {
 			Interface.tieScreen();
@@ -130,7 +131,7 @@ public abstract class Interface {
 		Interface.printDashLine();
 	}
 
-	// imprime a tela de reiniciar o jogo e retorna a escolha do jogador
+	//Print the restart game option screen and returns the player's choice 
 	public static int restartScreen(){
 		System.out.println("Game Over!");
 		System.out.println();
@@ -145,7 +146,7 @@ public abstract class Interface {
 		return option;
 	}
 
-	// imprime a interface para inserção de um nome o retorna
+	//Print the name insertion interface and returns the name 
 	public static String nameScreen(int playerNumber) {
 		System.out.print("Insert player " + playerNumber + " name: ");
 		String name = "";
@@ -158,7 +159,7 @@ public abstract class Interface {
 		return name;
 	}
 
-	// imprime a tela de tutorial (se o usuário desejar)
+	//Print the tutorial choice screen
 	public static void tutorialSelectScreen(int boardSize) {
 		System.out.println("\nPress Y/y to show a tutorial on how to select cells");
 		System.out.println("Press any other key to skip");
@@ -174,7 +175,7 @@ public abstract class Interface {
 
 	}
 
-	// imprime o tutorial
+	//Print the tutorial screen
 	public static void tutorialScreen(int boardSize) {
 		System.out.println("\nHow to play:");
 		System.out.println("The board is a matrix of " + boardSize + "x" + boardSize + " elements.");
