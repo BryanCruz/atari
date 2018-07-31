@@ -173,7 +173,7 @@ public abstract class Interface {
   //Print the tutorial choice screen
   public static void tutorialSelectScreen(int boardSize) {
     System.out.println("\nPress Y/y to show a tutorial on how to select cells");
-    System.out.println("Press any other key to skip");
+    System.out.println("Press any other key to skip...");
 
     String tutorialOption = UserInput.readString();
     boolean showTutorial = !tutorialOption.isEmpty() && (tutorialOption.charAt(0) == 'y'
