@@ -8,8 +8,7 @@ class Main {
 		int difficulty = 0, gameMode = 0;
 
 		while(restartOption != 3){
-			if(restartOption == 2){
-				boardSize = 3;
+			if(restartOption == 2){			
 
 				// checks the game mode
 				gameMode = Interface.firstScreen();
