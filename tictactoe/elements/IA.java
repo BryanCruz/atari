@@ -17,7 +17,7 @@ public class IA extends Player{
 		this.setDifficulty(difficulty);
 		random = new Random();
 	}
-	
+
 	// Controls what strategy the AI will utilize to make a choice
 	@Override
 	public int[] chooseCell() {
@@ -28,11 +28,31 @@ public class IA extends Player{
 			//TODO: find how to handle this
 			System.out.println("handling exception");
 		}
-		if(this.getDifficulty() <= 1){
+		int iaDifficulty = this.getDifficulty();
+		//If difficulty == 1, it plays randomly
+		if (iaDifficulty == 1) {
 			return makeChoice();
-		}else{
+		}
+		else {
 			Player testPlayer = new IA(9, this.getNumber() == 1 ? 2 : 1);
-			return makeStrategicChoice(this.getDifficulty(), true, this, testPlayer);
+			//if difficulty == 2, plays randomly 50% of the time and strategically in the other 50%
+			if (iaDifficulty == 2) {
+				double option = random.nextDouble();
+				if (option < 0.5) {
+					return makeChoice();
+				}
+				else {
+					return makeStrategicChoice(this.getDifficulty(), true, this, testPlayer);
+				}
+			}
+			//if difficulty == 2, plays estrategically (but still can lose)
+			else if (iaDifficulty == 3) {
+				return makeStrategicChoice(this.getDifficulty(), true, this, testPlayer);
+			}
+			//else, it will always tie
+			else {
+				return makeStrategicChoice(9, true, this, testPlayer);
+			}
 		}
 	}
 
@@ -53,19 +73,19 @@ public class IA extends Player{
 			Lose = -1;
 			Tie = 0;
 		On our turn we maximize the score, on opponent's turn we minimize.
-		The difficulty is a parameter that controls how many times the AI will "lookAhead", i.e., 
-				how many plays it will simulate to decide the best play. At difficulty=9, the AI 
+		The difficulty is a parameter that controls how many times the AI will "lookAhead", i.e.,
+				how many plays it will simulate to decide the best play. At difficulty=9, the AI
 				simulutes all the possible moves, therefore it'll never loose.
 	*/
 	public int[] makeStrategicChoice(int difficulty, boolean maximize, Player currentPlayer, Player opponent) {
 		// A vector that stores the row, column and score of a play
-		int[] choice = new int[] {-1, -1, 0};	
-		
+		int[] choice = new int[] {-1, -1, 0};
+
 		//Checks for a win, tie or loss
 		int score = Engine.checkWin();	//Checks
 
 		// A list that stores all the  best possible choices for the next move
-		ArrayList<int[]> possibleChoices = new ArrayList<>(); 
+		ArrayList<int[]> possibleChoices = new ArrayList<>();
 
 		//base case
 		if (Engine.checkFullBoard() || difficulty == 0 || score != 0 ) {
@@ -100,7 +120,7 @@ public class IA extends Player{
 						if (score == bestScore) {
 							possibleChoices.add(new int[] {i, j, bestScore});
 						}
-						// We utilize a bitwise XOR to decide if the score we got is grater or lower than the bestScore 
+						// We utilize a bitwise XOR to decide if the score we got is grater or lower than the bestScore
 						else if ((score < bestScore) ^ maximize) {
 							bestScore = score;
 							possibleChoices.clear();
@@ -118,7 +138,7 @@ public class IA extends Player{
 		}
 
 		return choice;
-	}	
+	}
 
 	// Set the AI's difficulty
 	public void setDifficulty(int difficulty) {
